@@ -1,0 +1,2964 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <meta name="theme-color" content="#020617" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="PastoralMente" />
+  <title>PASTORALMENTE BÍBLICA AI | Plataforma Ministerial & Academia</title>
+  <meta name="description" content="Plataforma Integral Ministerial, Consejería Clínica Hospitalaria, Predicación, Exégesis y Academia Bíblica Avanzada." />
+  
+  <!-- Manifest PWA embebido autónomo para GitHub Pages y navegadores -->
+  <link rel="manifest" href="data:application/manifest+json,%7B%22short_name%22%3A%22PastoralMente%22%2C%22name%22%3A%22PastoralMente%20B%C3%ADblica%20AI%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22theme_color%22%3A%22%23020617%22%2C%22background_color%22%3A%22%23020617%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20192%20192'%3E%3Crect%20width%3D'192'%20height%3D'192'%20rx%3D'36'%20fill%3D'%23020617'%2F%3E%3Ccircle%20cx%3D'96'%20cy%3D'96'%20r%3D'70'%20fill%3D'%23064e3b'%2F%3E%3Cpath%20d%3D'M96%2045%20v102%20M45%2096%20h102'%20stroke%3D'%23fbbf24'%20stroke-width%3D'14'%20stroke-linecap%3D'round'%2F%3E%3C%2Fsvg%3E%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D" />
+
+  <!-- Google Fonts con fallbacks fluidos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ==========================================================================
+       ESTILOS UNIFICADOS AUTÓNOMOS (PASTORALMENTE BÍBLICA AI)
+       ========================================================================== */
+    :root {
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-serif: 'Lora', Georgia, serif;
+      --font-title: 'Cinzel', serif;
+
+      --bg-primary: #020617;
+      --bg-secondary: #0b1324;
+      --bg-card: #0f172a;
+      --bg-card-hover: #1e293b;
+      --bg-surface: #030712;
+
+      --color-emerald: #10b981;
+      --color-emerald-deep: #064e3b;
+      --color-teal: #14b8a6;
+      --color-teal-deep: #0f766e;
+      --color-amber: #f59e0b;
+      --color-amber-gold: #fbbf24;
+      --color-rose: #f43f5e;
+      --color-blue: #3b82f6;
+      --color-indigo: #6366f1;
+
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --border-color: #1e293b;
+      --border-glow: rgba(20, 184, 166, 0.35);
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+      --radius-full: 9999px;
+
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.5);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -4px rgba(0, 0, 0, 0.5);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.7), 0 8px 10px -6px rgba(0, 0, 0, 0.6);
+    }
+
+    body.light-theme {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #f1f5f9;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f8fafc;
+      --bg-surface: #ffffff;
+      --text-primary: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+      --border-glow: rgba(16, 185, 129, 0.3);
+    }
+
+    body.high-contrast {
+      filter: contrast(1.25);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-family: var(--font-sans);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.5;
+      -webkit-text-size-adjust: 100%;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      background: radial-gradient(circle at 10% 0%, rgba(6, 78, 59, 0.15) 0%, transparent 40%),
+                  radial-gradient(circle at 90% 20%, rgba(20, 184, 166, 0.1) 0%, transparent 45%),
+                  var(--bg-primary);
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    ::selection {
+      background-color: var(--color-amber);
+      color: #020617;
+    }
+
+    .font-sans { font-family: var(--font-sans) !important; }
+    .font-serif { font-family: var(--font-serif) !important; }
+    .font-title { font-family: var(--font-title) !important; }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-title);
+      color: var(--text-primary);
+      letter-spacing: 0.02em;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+    }
+
+    .app-container {
+      max-width: 1400px;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: clamp(12px, 2.5vw, 28px);
+      padding-right: clamp(12px, 2.5vw, 28px);
+    }
+
+    .main-content {
+      flex: 1 1 0%;
+      padding-top: 1.25rem;
+      padding-bottom: 3.5rem;
+    }
+
+    /* Cabecera / Navbar */
+    .app-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background-color: rgba(2, 6, 23, 0.94);
+      border-bottom: 1px solid var(--border-color);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+    body.light-theme .app-header {
+      background-color: rgba(255, 255, 255, 0.94);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 4.5rem;
+      gap: 0.75rem;
+    }
+
+    .brand-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      cursor: pointer;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .brand-icon {
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, #059669, #0f766e, #d97706);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(52, 211, 153, 0.4);
+      box-shadow: 0 8px 16px rgba(4, 47, 46, 0.6);
+      flex-shrink: 0;
+      color: #fef3c7;
+      font-size: 1.25rem;
+    }
+
+    .brand-text h1 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--text-primary);
+      margin: 0;
+    }
+
+    .brand-text .highlight {
+      color: var(--color-amber-gold);
+      font-family: var(--font-sans);
+      font-weight: 900;
+    }
+
+    .brand-subtitle {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-family: var(--font-serif);
+      font-style: italic;
+      margin: 0;
+    }
+
+    .badge-tag {
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 800;
+      padding: 0.15rem 0.5rem;
+      border-radius: var(--radius-full);
+      background: rgba(6, 78, 59, 0.7);
+      color: #6ee7b7;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      display: inline-block;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .main-nav::-webkit-scrollbar { display: none; }
+
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 0.8rem;
+      border-radius: var(--radius-md);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      background: transparent;
+      border: 1px solid transparent;
+      transition: all 0.15s ease-in-out;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .nav-btn:hover {
+      color: #ffffff;
+      background: rgba(30, 41, 59, 0.7);
+      border-color: rgba(51, 65, 85, 0.8);
+    }
+
+    .nav-btn.active {
+      background: linear-gradient(90deg, rgba(6, 78, 59, 0.85), rgba(15, 23, 42, 0.95));
+      color: var(--color-amber-gold);
+      border-color: rgba(16, 185, 129, 0.5);
+      box-shadow: 0 4px 12px rgba(6, 78, 59, 0.4);
+    }
+    body.light-theme .nav-btn.active {
+      background: #e2e8f0;
+      color: #064e3b;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      flex-shrink: 0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.55rem 1rem;
+      border-radius: var(--radius-md);
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      transition: all 0.15s ease-in-out;
+      box-shadow: var(--shadow-sm);
+      user-select: none;
+    }
+
+    .btn:hover {
+      background: var(--bg-card-hover);
+      border-color: #475569;
+      transform: translateY(-1px);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #059669, #0f766e);
+      color: #020617;
+      font-weight: 800;
+      border-color: rgba(52, 211, 153, 0.5);
+    }
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #10b981, #14b8a6);
+      color: #020617;
+    }
+
+    .btn-gold {
+      background: rgba(245, 158, 11, 0.2);
+      color: var(--color-amber-gold);
+      border-color: rgba(245, 158, 11, 0.45);
+    }
+    .btn-gold:hover {
+      background: rgba(245, 158, 11, 0.35);
+      color: #fef3c7;
+    }
+
+    .btn-danger {
+      background: rgba(244, 63, 94, 0.2);
+      color: #fda4af;
+      border-color: rgba(244, 63, 94, 0.5);
+    }
+
+    .btn-sm {
+      padding: 0.35rem 0.65rem;
+      font-size: 0.72rem;
+      border-radius: var(--radius-sm);
+    }
+
+    /* Hero Banner */
+    .hero-banner {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-glow);
+      background: linear-gradient(135deg, #020617 0%, rgba(4, 47, 46, 0.65) 50%, #020617 100%);
+      padding: clamp(1.25rem, 3vw, 2.25rem);
+      box-shadow: var(--shadow-xl);
+      margin-bottom: 1.5rem;
+    }
+    body.light-theme .hero-banner {
+      background: linear-gradient(135deg, #ffffff 0%, #ecfdf5 50%, #f0fdf4 100%);
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: var(--radius-full);
+      background: rgba(19, 78, 74, 0.7);
+      border: 1px solid rgba(20, 184, 166, 0.4);
+      color: #5eead4;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-title {
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .hero-desc {
+      font-size: clamp(0.85rem, 1.4vw, 0.95rem);
+      color: var(--text-secondary);
+      font-family: var(--font-serif);
+      line-height: 1.7;
+      max-width: 900px;
+    }
+
+    /* Grids & Cards */
+    .grid { display: grid; gap: 1rem; }
+    .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+    .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .grid-cols-12 { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+
+    @media (min-width: 640px) {
+      .sm\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .sm\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .sm\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .sm\:grid-cols-6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+    }
+    @media (min-width: 1024px) {
+      .lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .lg\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .lg\:grid-cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+      .lg\:col-span-4 { grid-column: span 4 / span 4; }
+      .lg\:col-span-5 { grid-column: span 5 / span 5; }
+      .lg\:col-span-6 { grid-column: span 6 / span 6; }
+      .lg\:col-span-7 { grid-column: span 7 / span 7; }
+      .lg\:col-span-8 { grid-column: span 8 / span 8; }
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+      box-shadow: var(--shadow-md);
+      transition: all 0.2s ease;
+      position: relative;
+    }
+    .card:hover {
+      border-color: rgba(51, 65, 85, 0.9);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-family: var(--font-serif);
+      line-height: 1.5;
+    }
+
+    /* Formularios */
+    .form-group { margin-bottom: 0.9rem; }
+    .form-label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .input, .textarea, .select {
+      width: 100%;
+      padding: 0.65rem 0.85rem;
+      background-color: var(--bg-secondary);
+      border: 1px solid #334155;
+      border-radius: var(--radius-md);
+      color: var(--text-primary);
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .input:focus, .textarea:focus, .select:focus {
+      border-color: var(--color-teal);
+      box-shadow: 0 0 0 2px rgba(20, 184, 166, 0.25);
+    }
+    .textarea { min-height: 90px; resize: vertical; }
+
+    /* Pestañas */
+    .tabs-header {
+      display: flex;
+      gap: 0.4rem;
+      overflow-x: auto;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.25rem;
+      scrollbar-width: none;
+    }
+    .tabs-header::-webkit-scrollbar { display: none; }
+
+    .tab-btn {
+      padding: 0.5rem 0.85rem;
+      border-radius: var(--radius-md);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid transparent;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .tab-btn:hover { color: #ffffff; background: #1e293b; }
+    .tab-btn.active {
+      background: rgba(20, 184, 166, 0.2);
+      color: #5eead4;
+      border-color: rgba(20, 184, 166, 0.45);
+      box-shadow: 0 2px 8px rgba(20, 184, 166, 0.2);
+    }
+
+    .view-pane { display: none; }
+    .view-pane.active {
+      display: block;
+      animation: fadeIn 0.2s ease-out;
+    }
+
+    .sub-pane { display: none; }
+    .sub-pane.active {
+      display: block;
+      animation: fadeIn 0.2s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Pipeline 9 Etapas */
+    .pipeline-step {
+      padding: 1.1rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      background: rgba(15, 23, 42, 0.65);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 0.75rem;
+      transition: all 0.2s ease;
+    }
+    .pipeline-step.active {
+      background: linear-gradient(180deg, rgba(4, 47, 46, 0.75), rgba(15, 23, 42, 0.95));
+      border-color: var(--color-teal);
+      box-shadow: 0 8px 24px rgba(20, 184, 166, 0.25);
+      outline: 2px solid rgba(45, 212, 191, 0.5);
+    }
+    .step-num {
+      width: 1.85rem;
+      height: 1.85rem;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.8rem;
+      background: #1e293b;
+      color: #cbd5e1;
+    }
+    .pipeline-step.active .step-num {
+      background: var(--color-teal);
+      color: #020617;
+    }
+
+    /* Cronómetro y Modo Predicador */
+    .timer-display {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-weight: 900;
+      color: var(--color-amber-gold);
+      text-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+      letter-spacing: 0.05em;
+      text-align: center;
+      margin: 0.75rem 0;
+      user-select: none;
+    }
+    .timer-display.alert {
+      color: var(--color-rose);
+      animation: pulseAlert 1s infinite;
+    }
+    @keyframes pulseAlert {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.85; transform: scale(1.02); }
+    }
+
+    .pulpit-reading-area {
+      padding: 1.5rem;
+      background: rgba(2, 6, 23, 0.9);
+      border: 1px solid #334155;
+      border-radius: var(--radius-lg);
+      line-height: 1.8;
+      font-family: var(--font-serif);
+      color: #e2e8f0;
+      overflow-y: auto;
+      max-height: 600px;
+    }
+    .reading-mode-notas { font-size: 1rem; }
+    .reading-mode-tablet { font-size: 1.25rem; }
+    .reading-mode-pulpito { font-size: 1.65rem; line-height: 2.1; font-weight: 500; }
+
+    /* Teleprompter Fullscreen Mode */
+    .teleprompter-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #000000;
+      color: #ffffff;
+      padding: 2rem;
+      display: none;
+      flex-direction: column;
+    }
+    .teleprompter-overlay.open { display: flex; }
+    .teleprompter-content {
+      flex: 1;
+      overflow-y: auto;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      line-height: 1.9;
+      font-family: var(--font-sans);
+      font-weight: 600;
+      padding: 2rem 10vw;
+    }
+
+    /* Canvas de Firma */
+    .signature-canvas-wrapper {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      border: 2px dashed #475569;
+      padding: 8px;
+      display: flex;
+      justify-content: center;
+    }
+    canvas.signature-pad {
+      width: 100%;
+      max-width: 560px;
+      height: 160px;
+      background: #f8fafc;
+      border-radius: var(--radius-md);
+      cursor: crosshair;
+      touch-action: none;
+    }
+
+    /* Indicador de audio flotante */
+    .voice-bar {
+      position: fixed;
+      bottom: 1.25rem;
+      right: 1.25rem;
+      z-index: 60;
+      width: min(420px, calc(100vw - 2.5rem));
+      background: rgba(15, 23, 42, 0.96);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(245, 158, 11, 0.6);
+      border-radius: var(--radius-lg);
+      padding: 0.75rem 1rem;
+      box-shadow: var(--shadow-xl);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .offline-banner {
+      position: fixed;
+      bottom: 1.25rem;
+      left: 1.25rem;
+      z-index: 55;
+      background: #d97706;
+      color: #020617;
+      padding: 0.45rem 0.85rem;
+      border-radius: var(--radius-md);
+      font-size: 0.75rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .kpi-box {
+      padding: 1.1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .kpi-value {
+      font-size: clamp(1.75rem, 3.5vw, 2.3rem);
+      font-weight: 900;
+      color: #5eead4;
+      line-height: 1.1;
+      margin-top: 0.25rem;
+    }
+
+    .app-footer {
+      border-top: 1px solid var(--border-color);
+      background-color: rgba(2, 6, 23, 0.96);
+      padding: 1.5rem 0;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+    @media (min-width: 640px) {
+      .footer-inner { flex-direction: row; }
+    }
+
+    /* Impresión Profesional */
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #0f172a !important;
+      }
+      .no-print, .app-header, .app-footer, .voice-bar, .offline-banner, .btn, .tabs-header, .header-actions {
+        display: none !important;
+      }
+      .print-only { display: block !important; }
+      .card, .hero-banner {
+        background: #ffffff !important;
+        color: #0f172a !important;
+        border: 1px solid #cbd5e1 !important;
+        box-shadow: none !important;
+      }
+      #printable-consent, #printable-discharge-cert, #printable-safety-plan {
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+        color: #0f172a !important;
+      }
+    }
+    .print-only { display: none; }
+
+    ::-webkit-scrollbar { height: 6px; width: 6px; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    ::-webkit-scrollbar-track { background: #020617; }
+  </style>
+</head>
+<body>
+
+  <!-- Cabecera Principal Unificada -->
+  <header class="app-header no-print">
+    <div class="app-container header-inner">
+      <div class="brand-wrapper" onclick="switchMainView('view-dashboard')" title="PastoralMente Bíblica AI">
+        <div class="brand-icon">✝</div>
+        <div class="brand-text">
+          <h1>Pastoral<span class="highlight">Mente</span><span class="badge-tag">AUTÓNOMO</span></h1>
+          <p class="brand-subtitle">Plataforma Ministerial & Academia</p>
+        </div>
+      </div>
+
+      <!-- Navegación por pestañas unificadas -->
+      <nav class="main-nav" aria-label="Navegación del Sistema">
+        <button class="nav-btn active" data-view="view-dashboard" onclick="switchMainView('view-dashboard')">
+          <span>🏠 Inicio</span>
+        </button>
+        <button class="nav-btn" data-view="view-consejeria" onclick="switchMainView('view-consejeria')">
+          <span>🩺 Consejería</span>
+        </button>
+        <button class="nav-btn" data-view="view-sermones" onclick="switchMainView('view-sermones')">
+          <span>🎙️ Sermones</span>
+        </button>
+        <button class="nav-btn" data-view="view-estudio" onclick="switchMainView('view-estudio')">
+          <span>📖 Estudio</span>
+        </button>
+        <button class="nav-btn" data-view="view-academia" onclick="switchMainView('view-academia')">
+          <span>🎓 Academia</span>
+        </button>
+      </nav>
+
+      <div class="header-actions">
+        <button id="btn-theme-toggle" class="btn btn-sm btn-icon" title="Alternar Modo Oscuro / Claro">🌓</button>
+        <button id="btn-role-switcher" class="btn btn-sm btn-gold" title="Alternar Rol de Usuario">Rol: Psicólogo</button>
+        <button id="btn-font-down" class="btn btn-sm" title="Reducir fuente">A−</button>
+        <button id="btn-font-up" class="btn btn-sm" title="Aumentar fuente">A+</button>
+        <button id="btn-export-backup" class="btn btn-sm" title="Descargar Copia de Seguridad JSON">💾 Respaldo</button>
+        <button id="btn-import-backup" class="btn btn-sm" title="Restaurar Copia de Seguridad JSON">📂 Restaurar</button>
+        <button id="btn-install-pwa" class="btn btn-sm btn-primary" style="display:none;">📲 Instalar</button>
+        <input type="file" id="input-import-file" accept="application/json,.json" style="display:none;" />
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenedor Principal de Vistas -->
+  <main class="main-content app-container">
+
+    <!-- =====================================================================
+         1. VISTA: DASHBOARD PRINCIPAL & MÉTRICAS
+         ===================================================================== -->
+    <section id="view-dashboard" class="view-pane active">
+      <div class="hero-banner">
+        <div class="hero-pill">✨ Sistema 100% Autónomo para GitHub Pages & Móvil</div>
+        <h2 class="hero-title">Centro de Mando Ministerial y Clínico</h2>
+        <p class="hero-desc">
+          Plataforma unificada en un único archivo HTML puro. Sin dependencias externas, sin React, sin Babel y sin fallas en GitHub Pages. Persistencia dual inmediata en IndexedDB y LocalStorage.
+        </p>
+      </div>
+
+      <!-- KPIs del Sistema -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-6">
+        <div class="kpi-box">
+          <span class="form-label">Pacientes</span>
+          <div id="kpi-cases" class="kpi-value">0</div>
+          <span class="card-desc">Expedientes activos</span>
+        </div>
+        <div class="kpi-box">
+          <span class="form-label">Sermones</span>
+          <div id="kpi-sermons" class="kpi-value" style="color:var(--color-amber-gold);">0</div>
+          <span class="card-desc">Bosquejos en atril</span>
+        </div>
+        <div class="kpi-box">
+          <span class="form-label">Fichas Exégesis</span>
+          <div id="kpi-research" class="kpi-value" style="color:#60a5fa;">0</div>
+          <span class="card-desc">Temas bíblicos</span>
+        </div>
+        <div class="kpi-box">
+          <span class="form-label">Actividades</span>
+          <div id="kpi-events" class="kpi-value" style="color:#c084fc;">0</div>
+          <span class="card-desc">Agenda ministerial</span>
+        </div>
+        <div class="kpi-box">
+          <span class="form-label">Metas Listas</span>
+          <div id="kpi-goals" class="kpi-value" style="color:#34d399;">0</div>
+          <span class="card-desc">Objetivos logrados</span>
+        </div>
+        <div class="kpi-box">
+          <span class="form-label">Esquemas SVG</span>
+          <div id="kpi-visuals" class="kpi-value" style="color:#f43f5e;">0</div>
+          <span class="card-desc">Gráficos creados</span>
+        </div>
+      </div>
+
+      <!-- Gráficos Nativos en Canvas -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8">
+        <div class="lg:col-span-6 card space-y-3">
+          <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+            <h3 class="card-title text-emerald-300">Radar Holístico de Recuperación Integral</h3>
+            <span class="badge-tag">Canvas Nativo</span>
+          </div>
+          <div style="display:flex; justify-content:center; align-items:center; height:280px;">
+            <canvas id="dashboard-radar-canvas" width="360" height="280"></canvas>
+          </div>
+          <p class="card-desc text-center">Evaluación multidimensional: Emocional, Ansiedad, Depresión, Familiar, Gracia y Resiliencia.</p>
+        </div>
+
+        <div class="lg:col-span-6 card space-y-3">
+          <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+            <h3 class="card-title text-amber-300">Distribución de Pacientes por Etapa</h3>
+            <span class="badge-tag">En Tiempo Real</span>
+          </div>
+          <div style="display:flex; justify-content:center; align-items:center; height:280px;">
+            <canvas id="dashboard-bar-canvas" width="380" height="280"></canvas>
+          </div>
+          <p class="card-desc text-center">Evolución en Pipeline: Admisión, Evaluación, Intervención y Cierre de Expediente.</p>
+        </div>
+      </div>
+
+      <!-- Accesos Directos a los Módulos -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <div class="card cursor-pointer hover:border-emerald-500" onclick="switchMainView('view-consejeria')">
+          <div class="brand-icon mb-2" style="background:#064e3b; color:#34d399;">🩺</div>
+          <h4 class="card-title text-emerald-300">Consejería Clínica</h4>
+          <p class="card-desc">Pipeline 9 etapas, Consentimiento con firma digital, Motor 5P DSM-5 y psicometría.</p>
+        </div>
+        <div class="card cursor-pointer hover:border-amber-500" onclick="switchMainView('view-sermones')">
+          <div class="brand-icon mb-2" style="background:#78350f; color:#fde68a;">🎙️</div>
+          <h4 class="card-title text-amber-300">Predicación & Púlpito</h4>
+          <p class="card-desc">Cronómetro de atril, Teleprompter auto-scroll, vistas grandes y planificador de metas.</p>
+        </div>
+        <div class="card cursor-pointer hover:border-blue-500" onclick="switchMainView('view-estudio')">
+          <div class="brand-icon mb-2" style="background:#1e3a8a; color:#93c5fd;">📖</div>
+          <h4 class="card-title text-blue-300">Estudio Bíblico</h4>
+          <p class="card-desc">Método exegético en 4 pasos, mapas conceptuales, atlas de rutas y cronología.</p>
+        </div>
+        <div class="card cursor-pointer hover:border-indigo-500" onclick="switchMainView('view-academia')">
+          <div class="brand-icon mb-2" style="background:#312e81; color:#c7d2fe;">🎓</div>
+          <h4 class="card-title text-indigo-300">Academia & Líderes</h4>
+          <p class="card-desc">10 programas teológicos con módulos interactivos y generador de esquemas SVG.</p>
+        </div>
+      </div>
+
+      <!-- Actividad Reciente -->
+      <div class="card">
+        <h3 class="card-title text-slate-100 mb-3">Actividad y Registros Locales</h3>
+        <div id="index-recent-activity">
+          <!-- Dinámico -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         2. VISTA: CONSEJERÍA PASTORAL & SUITE CLÍNICA
+         ===================================================================== -->
+    <section id="view-consejeria" class="view-pane">
+      <!-- Selector de Caso Global -->
+      <div class="card mb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 bg-slate-950 border-teal-500/40">
+        <div class="flex items-center gap-2 w-full sm:w-auto">
+          <label class="form-label text-teal-300" style="margin:0; white-space:nowrap;">Paciente:</label>
+          <select class="select select-active-case" style="padding:0.4rem 0.8rem; font-weight:700;">
+            <!-- Opciones dinámicas -->
+          </select>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="btn-quick-new-case" class="btn btn-sm btn-primary">+ Nuevo Paciente</button>
+          <span class="text-xs text-slate-400">Expediente: <strong class="active-case-name text-amber-300">Cargando...</strong></span>
+        </div>
+      </div>
+
+      <!-- Pestañas Internas de Consejería -->
+      <div class="tabs-header">
+        <button class="tab-btn active" onclick="switchConsejeriaSubTab('sub-pipeline')">🛤️ Pipeline 9 Etapas</button>
+        <button class="tab-btn" onclick="switchConsejeriaSubTab('sub-consentimiento')">✍️ Consentimiento Bioético</button>
+        <button class="tab-btn" onclick="switchConsejeriaSubTab('sub-psicometria')">📊 PHQ-9 & GAD-7</button>
+        <button class="tab-btn" onclick="switchConsejeriaSubTab('sub-motor5p')">🧠 Motor 5P DSM-5</button>
+        <button class="tab-btn" onclick="switchConsejeriaSubTab('sub-copiloto')">🧭 Copiloto & Timeline</button>
+        <button class="tab-btn" onclick="switchConsejeriaSubTab('sub-crisis')">🛡️ Plan Crisis Stanley-Brown</button>
+        <button class="tab-btn" onclick="switchConsejeriaSubTab('sub-gottman')">💑 Gottman & Efesios</button>
+        <button class="tab-btn" onclick="switchConsejeriaSubTab('sub-duelo')">🕊️ Duelo Worden</button>
+        <button class="tab-btn" onclick="switchConsejeriaSubTab('sub-genograma')">🌳 Genograma</button>
+        <button class="tab-btn" onclick="switchConsejeriaSubTab('sub-alta')">🏆 Alta por Evidencia</button>
+        <button class="tab-btn" onclick="switchConsejeriaSubTab('sub-fichero')">📁 Fichero</button>
+      </div>
+
+      <!-- Sub-Pestaña: Pipeline -->
+      <div id="sub-pipeline" class="sub-pane active">
+        <div class="hero-banner mb-4" style="padding:1.25rem 1.5rem;">
+          <h3 class="hero-title" style="font-size:1.35rem;">Pipeline de Acompañamiento Clínico-Pastoral (9 Etapas)</h3>
+          <p class="hero-desc">Valida el avance estructurado del paciente con criterios objetivos antes del cierre formal del caso.</p>
+        </div>
+        <div id="pipeline-steps-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <!-- Dinámico -->
+        </div>
+      </div>
+
+      <!-- Sub-Pestaña: Consentimiento -->
+      <div id="sub-consentimiento" class="sub-pane">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 no-print">
+          <div class="lg:col-span-5 space-y-4">
+            <div class="card space-y-3">
+              <h3 class="card-title text-emerald-300">Acta de Consentimiento Bioético</h3>
+              <div class="form-group">
+                <label class="form-label">Plantilla:</label>
+                <select id="consent-template-select" class="select">
+                  <option value="Adulto_Psicoterapia_Pastoral">Adulto - Psicoterapia & Cuidado Pastoral</option>
+                  <option value="Telepsicologia_Atencion_Remota">Telepsicología & Videoconsulta Segura</option>
+                  <option value="Menores_Consentimiento_Tutores">Menores de Edad con Patria Potestad</option>
+                  <option value="Acompanamiento_Pastoral_Eclesial">Acuerdo Pastoral Eclesial</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Documento Identidad:</label>
+                <input type="text" id="consent-doc-id" class="input" value="DNI-10482918" />
+              </div>
+              <div class="space-y-1.5 text-xs p-3 bg-slate-900 rounded-xl border border-slate-800">
+                <label class="flex items-start gap-2 cursor-pointer">
+                  <input type="checkbox" id="chk-confidentiality" checked class="rounded accent-emerald-500 mt-0.5" />
+                  <span><strong>Confidencialidad:</strong> Secreto profesional con excepciones legales.</span>
+                </label>
+                <label class="flex items-start gap-2 cursor-pointer">
+                  <input type="checkbox" id="chk-grace" checked class="rounded accent-emerald-500 mt-0.5" />
+                  <span><strong>Integración de Fe:</strong> Psicoterapia y doctrina de la gracia.</span>
+                </label>
+              </div>
+
+              <!-- Canvas de Firma -->
+              <div class="space-y-1">
+                <div class="flex justify-between items-center">
+                  <label class="form-label" style="margin:0;">Firma Digital Táctil:</label>
+                  <button type="button" id="btn-clear-signature" class="text-xs text-rose-400 underline font-bold">Limpiar</button>
+                </div>
+                <div class="signature-canvas-wrapper">
+                  <canvas id="signature-canvas" width="520" height="150" class="signature-pad"></canvas>
+                </div>
+              </div>
+
+              <button id="btn-finalize-consent" class="btn btn-primary w-full" style="width:100%;">
+                ✍️ Sellar Consentimiento Criptográficamente (SHA-256)
+              </button>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7">
+            <div class="card p-6 bg-white text-slate-900 shadow-xl" id="printable-consent">
+              <div class="flex justify-between items-center border-b-2 border-slate-800 pb-3 mb-3">
+                <div>
+                  <h2 class="font-title text-xl font-black text-slate-900">PASTORALMENTE ENTERPRISE</h2>
+                  <p class="text-xs text-slate-600 font-serif italic">Consultorio Clínico & Cuidado Pastoral Hospitalario</p>
+                </div>
+                <div class="text-right text-xs">
+                  <span class="font-bold uppercase text-slate-800 block">ACTA DE CONSENTIMIENTO</span>
+                  <span class="text-slate-500 font-mono text-[10px]" id="consent-hash-display">Sello: PENDIENTE DE FIRMA</span>
+                </div>
+              </div>
+              <div class="space-y-2 text-xs text-slate-800 font-serif leading-relaxed mb-4">
+                <p>Por medio del presente instrumento, el paciente <strong><span class="active-case-name">Aconsejado</span></strong> autoriza el inicio del proceso terapéutico y pastoral integrativo bajo los principios de la bioética clínica y la doctrina de la gracia.</p>
+                <p>El secreto profesional rige todas las sesiones, garantizando privacidad absoluta salvo en situaciones de riesgo inminente de autolesión o requerimiento judicial civil.</p>
+              </div>
+              <div class="pt-4 border-t-2 border-slate-800 flex justify-between items-center text-center text-xs">
+                <div>
+                  <img id="consent-signature-img" src="" alt="Firma" style="max-height:50px; margin:auto; display:none;" />
+                  <div class="border-t border-slate-400 w-36 mx-auto mt-1"></div>
+                  <strong class="text-slate-900 block">Firma del Paciente</strong>
+                </div>
+                <div>
+                  <div class="font-serif italic text-teal-800 font-bold">Pr. Psi. Jair — Matrícula Profesional</div>
+                  <div class="border-t border-slate-400 w-36 mx-auto mt-1"></div>
+                  <strong class="text-slate-900 block">Pastor-Psicólogo Jair</strong>
+                </div>
+              </div>
+              <div class="mt-4 pt-2 border-t border-slate-200 text-center no-print">
+                <button class="btn btn-sm btn-gold" onclick="window.print()">🖨️ Imprimir / Guardar PDF</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sub-Pestaña: Psicometría -->
+      <div id="sub-psicometria" class="sub-pane">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div class="lg:col-span-8 space-y-4">
+            <div class="card space-y-3">
+              <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+                <h3 class="card-title text-amber-300">Cuestionario PHQ-9 (Depresión)</h3>
+                <span class="badge-tag">Últimas 2 Semanas</span>
+              </div>
+              <div class="space-y-2 text-xs" id="phq9-items-container">
+                <!-- Generado dinámicamente -->
+              </div>
+            </div>
+
+            <div class="card space-y-3">
+              <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+                <h3 class="card-title text-teal-300">Escala GAD-7 (Ansiedad Generalizada)</h3>
+                <span class="badge-tag">Punto de corte: 10</span>
+              </div>
+              <div class="space-y-2 text-xs" id="gad7-items-container">
+                <!-- Generado dinámicamente -->
+              </div>
+            </div>
+
+            <div class="card space-y-3">
+              <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+                <h3 class="card-title text-emerald-300">Métrica de Bienestar Espiritual (Gracia vs Culpa)</h3>
+                <span class="badge-tag">0 a 4 puntos</span>
+              </div>
+              <div class="space-y-2 text-xs" id="spiritual-items-container">
+                <!-- Generado dinámicamente -->
+              </div>
+            </div>
+
+            <button id="btn-calc-psychometrics" class="btn btn-primary w-full" style="width:100%;">
+              📊 Procesar Psicometría & Guardar en Expediente
+            </button>
+          </div>
+
+          <div class="lg:col-span-4 space-y-4">
+            <div id="psychometrics-result-display">
+              <div class="card text-center p-6 text-slate-500 text-xs">
+                Selecciona las respuestas y pulsa Procesar Psicometría para calcular severidades.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sub-Pestaña: Motor 5P -->
+      <div id="sub-motor5p" class="sub-pane">
+        <div class="card space-y-4">
+          <div class="border-b border-slate-800 pb-2">
+            <span class="badge-tag">Etiología Integral</span>
+            <h3 class="card-title text-emerald-300 mt-1">Formulación Clínica 5P & Diagnóstico Diferencial DSM-5-TR</h3>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-5 gap-3 text-xs">
+            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">
+              <strong class="text-blue-300 block mb-1">1. Predisponentes</strong>
+              <p class="text-slate-300 font-serif">Apego inseguro infantil, antecedentes afectivos familiares, entorno legalista.</p>
+            </div>
+            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">
+              <strong class="text-amber-300 block mb-1">2. Precipitantes</strong>
+              <p class="text-slate-300 font-serif">Pérdida imprevista, discusión marital, pensamiento intrusivo de culpa.</p>
+            </div>
+            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">
+              <strong class="text-rose-300 block mb-1">3. Perpetuantes</strong>
+              <p class="text-slate-300 font-serif">Rumiación obsesiva, aislamiento, falsa creencia de que Dios le desechó.</p>
+            </div>
+            <div class="p-3 bg-slate-900 rounded-xl border border-emerald-900/40">
+              <strong class="text-emerald-300 block mb-1">4. Protectores</strong>
+              <p class="text-slate-300 font-serif">Amor a las Escrituras, vínculo con el cónyuge, apoyo pastoral seguro.</p>
+            </div>
+            <div class="p-3 bg-slate-900 rounded-xl border border-red-900/50">
+              <strong class="text-red-300 block mb-1">5. Peligros / Riesgos</strong>
+              <p class="text-slate-300 font-serif">Desesperanza aguda nocturna ante crisis de escrúpulos.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sub-Pestaña: Copiloto -->
+      <div id="sub-copiloto" class="sub-pane">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div class="lg:col-span-6 card space-y-3">
+            <h3 class="card-title text-teal-300">Registrar Sesión en Timeline</h3>
+            <div class="form-group">
+              <label class="form-label">Objetivos Trabajados:</label>
+              <input type="text" id="time-worked-goals" class="input" value="Desactivación de culpa legalista y registro de pensamientos" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Logros Consolidados:</label>
+              <input type="text" id="time-completed-goals" class="input" value="Diferenciación de intrusión involuntaria vs pecado consentido" />
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div class="form-group">
+                <label class="form-label">Alianza Terapéutica (1-10):</label>
+                <input type="number" id="time-alliance" class="input" min="1" max="10" value="9" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Evolución:</label>
+                <select id="time-status" class="select">
+                  <option value="Progreso Significativo">Progreso Significativo</option>
+                  <option value="Mejoría Estable">Mejoría Estable</option>
+                  <option value="Estancamiento">Estancamiento</option>
+                </select>
+              </div>
+            </div>
+            <button class="btn btn-primary w-full" style="width:100%;" onclick="alert('¡Sesión registrada exitosamente en el historial longitudinal!')">
+              💾 Guardar en Línea de Tiempo
+            </button>
+          </div>
+          <div class="lg:col-span-6 card space-y-2">
+            <h4 class="card-title text-slate-100">Prescripción Inteligente para Próxima Sesión</h4>
+            <div class="p-3.5 bg-teal-950/30 border border-teal-500/40 rounded-xl space-y-1.5 text-xs font-serif">
+              <p><strong>Objetivo Primario:</strong> Desarmar la creencia de perfeccionismo filial mediante Romanos 8:31-39.</p>
+              <p><strong>Técnica Asignada:</strong> Flecha descendente con sustitución de promesa de gracia.</p>
+              <p><strong>Tarea de Casa:</strong> Escribir 3 evidencias de la fidelidad divina vividas en la semana.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sub-Pestaña: Crisis -->
+      <div id="sub-crisis" class="sub-pane">
+        <div class="card bg-slate-950 border-rose-900/60 p-6 space-y-4" id="printable-safety-plan">
+          <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+            <div>
+              <span class="badge-tag" style="background:#881337; color:#fecdd3; border-color:#e11d48;">Protocolo Stanley-Brown</span>
+              <h3 class="card-title text-rose-300 mt-1">Plan de Seguridad Personal en Crisis</h3>
+            </div>
+            <button class="btn btn-sm btn-gold no-print" onclick="window.print()">🖨️ Imprimir Plan</button>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">
+              <strong class="text-rose-400 block mb-1">1. Señales de Alarma Personales:</strong>
+              <p class="text-slate-300 font-serif">Pensamientos de "estarían mejor sin mí", taquicardia y aislamiento repentino.</p>
+            </div>
+            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">
+              <strong class="text-teal-400 block mb-1">2. Estrategias de Auto-Calma (A Solas):</strong>
+              <p class="text-slate-300 font-serif">Respiración 4-7-8, agua fría en la cara (TIPP) y recitación del Salmo 23.</p>
+            </div>
+            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">
+              <strong class="text-amber-400 block mb-1">3. Red de Apoyo Directa:</strong>
+              <p class="text-slate-300 font-serif">Cónyuge, mentor espiritual y líder de grupo de oración.</p>
+            </div>
+            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">
+              <strong class="text-rose-400 block mb-1">4. Contactos Médicos y Guardia 24/7:</strong>
+              <p class="text-slate-300 font-serif">Línea de Ayuda 106 / Guardia Médica de Urgencias Hospitalarias.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sub-Pestaña: Gottman & Efesios -->
+      <div id="sub-gottman" class="sub-pane">
+        <div class="card space-y-4">
+          <div class="border-b border-slate-800 pb-2">
+            <h3 class="card-title text-amber-300">Los 4 Jinetes Gottman & Antídotos de Efesios 5</h3>
+            <p class="card-desc">Desactiva las toxinas conyugales mediante la gracia sacrificial del pacto matrimonial.</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+            <div class="p-3.5 bg-slate-900 rounded-xl border border-slate-800">
+              <strong class="text-orange-400 block mb-1">1. Crítica Destructiva → Planteamiento Suave:</strong>
+              <p class="text-slate-300 font-serif">Hablar de cómo me siento y lo que necesito sin atacar la personalidad del cónyuge.</p>
+            </div>
+            <div class="p-3.5 bg-slate-900 rounded-xl border border-rose-900/40">
+              <strong class="text-rose-400 block mb-1">2. Desprecio → Cultura de Aprecio y Gratitud:</strong>
+              <p class="text-slate-300 font-serif">Desterrar el sarcasmo y recordar el valor del otro como coheredero de la gracia.</p>
+            </div>
+            <div class="p-3.5 bg-slate-900 rounded-xl border border-slate-800">
+              <strong class="text-yellow-400 block mb-1">3. Actitud Defensiva → Asumir Responsabilidad:</strong>
+              <p class="text-slate-300 font-serif">Validar la queja del otro y reconocer con humildad la parte propia del conflicto.</p>
+            </div>
+            <div class="p-3.5 bg-slate-900 rounded-xl border border-slate-800">
+              <strong class="text-blue-400 block mb-1">4. Cerrazón (Stonewalling) → Auto-Calma Fisiológica:</strong>
+              <p class="text-slate-300 font-serif">Pausa acordada de 20 minutos para orar y respirar antes de reanudar el diálogo.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sub-Pestaña: Duelo Worden -->
+      <div id="sub-duelo" class="sub-pane">
+        <div class="card space-y-4">
+          <div class="border-b border-slate-800 pb-2">
+            <h3 class="card-title text-teal-300">Las 4 Tareas del Duelo (William Worden)</h3>
+            <p class="card-desc">Elaboración adaptativa con anclaje en los Salmos de Lamento.</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+            <div class="p-3 bg-slate-900 rounded-xl">
+              <strong class="text-teal-300 block">Tarea 1: Aceptar la Realidad de la Pérdida</strong>
+              <p class="text-slate-400 font-serif">Superar la incredulidad inicial reconociendo el hecho irrevocable.</p>
+            </div>
+            <div class="p-3 bg-slate-900 rounded-xl">
+              <strong class="text-rose-300 block">Tarea 2: Elaborar el Dolor del Duelo</strong>
+              <p class="text-slate-400 font-serif">Permitirse llorar sin considerar el dolor como falta de fe espiritual.</p>
+            </div>
+            <div class="p-3 bg-slate-900 rounded-xl">
+              <strong class="text-amber-300 block">Tarea 3: Adaptarse a un Mundo sin el Ser Amado</strong>
+              <p class="text-slate-400 font-serif">Reorganizar roles cotidianos y redefinir proyectos de vida.</p>
+            </div>
+            <div class="p-3 bg-slate-900 rounded-xl">
+              <strong class="text-emerald-300 block">Tarea 4: Reubicar Emocionalmente y Hallar Esperanza</strong>
+              <p class="text-slate-400 font-serif">Guardar un aposento sagrado para el recuerdo y continuar con vocación en el Señor.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sub-Pestaña: Genograma -->
+      <div id="sub-genograma" class="sub-pane">
+        <div class="card space-y-4">
+          <div class="border-b border-slate-800 pb-2">
+            <h3 class="card-title text-indigo-300">Genograma Familiar & Diferenciación del Self (Bowen)</h3>
+            <p class="card-desc">Mapeo de 3 generaciones para desarticular mandatos de culpa y afianzar la identidad en Cristo.</p>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">
+              <strong class="text-slate-200 block mb-1">G1: Abuelos</strong>
+              <p class="text-slate-400 font-serif">Patriarcas familiares, estilo relacional y legado moralista o de gracia.</p>
+            </div>
+            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">
+              <strong class="text-slate-200 block mb-1">G2: Padres</strong>
+              <p class="text-slate-400 font-serif">Vínculos de apego, comunicación de afecto y heridas no resueltas.</p>
+            </div>
+            <div class="p-3 bg-slate-900 rounded-xl border border-indigo-900/60">
+              <strong class="text-indigo-300 block mb-1">G3: Aconsejado</strong>
+              <p class="text-slate-400 font-serif">Diferenciación sana en el Evangelio: libre de culpas ajenas (Ezequiel 18).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sub-Pestaña: Alta por Evidencia -->
+      <div id="sub-alta" class="sub-pane">
+        <div class="card space-y-4">
+          <div class="border-b border-slate-800 pb-2">
+            <h3 class="card-title text-amber-300">Motor de Alta Basada en Evidencia</h3>
+            <p class="card-desc">Cálculo estandarizado sin decisión arbitraria.</p>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+            <div class="p-3 bg-slate-900 rounded-xl">
+              <span class="form-label">Familiar:</span>
+              <input type="number" id="dc-fam-input" class="input mt-1" value="88" min="0" max="100" />
+            </div>
+            <div class="p-3 bg-slate-900 rounded-xl">
+              <span class="form-label">Ocupacional:</span>
+              <input type="number" id="dc-occ-input" class="input mt-1" value="90" min="0" max="100" />
+            </div>
+            <div class="p-3 bg-slate-900 rounded-xl">
+              <span class="form-label">Gracia:</span>
+              <input type="number" id="dc-esp-input" class="input mt-1" value="92" min="0" max="100" />
+            </div>
+            <div class="p-3 bg-slate-900 rounded-xl">
+              <span class="form-label">Adherencia:</span>
+              <input type="number" id="dc-adh-input" class="input mt-1" value="95" min="0" max="100" />
+            </div>
+          </div>
+          <button id="btn-eval-discharge-btn" class="btn btn-primary w-full" style="width:100%;">
+            🏆 Auditar Criterios de Alta & Emitir Certificado
+          </button>
+          <div id="discharge-status-box"></div>
+        </div>
+      </div>
+
+      <!-- Sub-Pestaña: Fichero -->
+      <div id="sub-fichero" class="sub-pane">
+        <div class="card">
+          <div class="flex justify-between items-center border-b border-slate-800 pb-2 mb-3">
+            <h3 class="card-title text-slate-100">Fichero Confidencial de Expedientes</h3>
+            <button class="btn btn-sm btn-primary" onclick="createNewCasePrompt()">+ Agregar Paciente</button>
+          </div>
+          <div id="client-records-list">
+            <!-- Dinámico -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         3. VISTA: SERMONES & PÚLPITO
+         ===================================================================== -->
+    <section id="view-sermones" class="view-pane">
+      <div class="tabs-header">
+        <button class="tab-btn active" onclick="switchSermonesSubTab('sub-sermon-editor')">🎙️ Bosquejo & Púlpito</button>
+        <button class="tab-btn" onclick="switchSermonesSubTab('sub-teleprompter')">📜 Modo Teleprompter</button>
+        <button class="tab-btn" onclick="switchSermonesSubTab('sub-sermon-planner')">📅 Planificador & Metas</button>
+      </div>
+
+      <!-- Sub-Pestaña: Editor & Atril -->
+      <div id="sub-sermon-editor" class="sub-pane active">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div class="lg:col-span-5 space-y-4">
+            <div class="card space-y-3">
+              <h3 class="card-title text-amber-300">Editor Homilético</h3>
+              <div class="form-group">
+                <label class="form-label">Título:</label>
+                <input type="text" id="sermon-title" class="input" value="La Paz que Gobierna en la Tormenta" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Pasaje Bíblico:</label>
+                <input type="text" id="sermon-text" class="input" value="Marcos 4:35-41" />
+              </div>
+              <div class="grid grid-cols-2 gap-3">
+                <div class="form-group">
+                  <label class="form-label">Minutos:</label>
+                  <input type="number" id="sermon-mins" class="input" value="30" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Vista Lectura:</label>
+                  <select id="sermon-view-mode" class="select">
+                    <option value="notas">Notas (Estándar)</option>
+                    <option value="tablet">Tablet (Mediano)</option>
+                    <option value="pulpito" selected>Púlpito (Atril Grande)</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Bosquejo Homilético:</label>
+                <textarea id="sermon-body" class="textarea" style="min-height:160px;">I. Introducción: Las tempestades inesperadas de la vida.
+II. El Maestro dormido en la barca: Soberanía y reposo absoluto.
+III. La pregunta de los discípulos: "¿No tienes cuidado que perecemos?".
+IV. La reprensión al viento y al corazón: "¿Por qué estáis así amedrentados?".
+V. Aplicación práctica: La fe no es ausencia de tormenta, sino la presencia de Cristo gobernando en ella.</textarea>
+              </div>
+              <div class="flex gap-2">
+                <button id="btn-save-sermon" class="btn btn-primary flex-1">💾 Guardar Sermón</button>
+                <button class="btn btn-gold" onclick="openTeleprompter()">📜 Teleprompter</button>
+              </div>
+            </div>
+
+            <div class="card">
+              <h4 class="card-title text-slate-100 mb-2">Biblioteca de Sermones</h4>
+              <div id="saved-sermon-list"></div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 space-y-4">
+            <!-- Cronómetro de Atril -->
+            <div class="card bg-slate-950 border-amber-500/40 text-center p-6 shadow-xl">
+              <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+                <span class="form-label" style="margin:0; color:var(--color-amber-gold);">Cronómetro de Púlpito en Vivo</span>
+                <span class="badge-tag">Atril Digital</span>
+              </div>
+              <div id="pulpit-clock" class="timer-display">00:00</div>
+              <div class="flex justify-center gap-3">
+                <button id="btn-timer-start" class="btn btn-primary">▶ Iniciar</button>
+                <button id="btn-timer-stop" class="btn btn-gold">⏸ Pausar</button>
+                <button id="btn-timer-reset" class="btn btn-danger">↺ Reiniciar</button>
+              </div>
+            </div>
+
+            <!-- Vista de Lectura en Vivo -->
+            <div class="card">
+              <div class="flex justify-between items-center border-b border-slate-800 pb-2 mb-3">
+                <span class="form-label" style="margin:0;">Atril de Predicación</span>
+                <button class="btn btn-sm btn-gold" onclick="window.print()">🖨️ Imprimir Bosquejo</button>
+              </div>
+              <div id="sermon-preview" class="pulpit-reading-area reading-mode-pulpito"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sub-Pestaña: Teleprompter -->
+      <div id="sub-teleprompter" class="sub-pane">
+        <div class="card space-y-3">
+          <h3 class="card-title text-amber-300">Teleprompter de Predicación en Vivo</h3>
+          <p class="card-desc">Permite proyectar el bosquejo o notas con desplazamiento automático continuo para grabación o atril.</p>
+          <div class="flex flex-wrap gap-3 items-center">
+            <button class="btn btn-primary" onclick="openTeleprompter()">Pantalla Completa Teleprompter</button>
+            <span class="text-xs text-slate-400">Presiona [Espacio] para pausar/reanudar y [Esc] para salir.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sub-Pestaña: Planificador -->
+      <div id="sub-sermon-planner" class="sub-pane">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div class="lg:col-span-6 space-y-4">
+            <div class="card space-y-3">
+              <h3 class="card-title text-teal-300">Planificador Ministerial</h3>
+              <div class="grid grid-cols-2 gap-3">
+                <div class="form-group">
+                  <label class="form-label">Fecha:</label>
+                  <input type="date" id="plan-date" class="input" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Categoría:</label>
+                  <select id="plan-type" class="select">
+                    <option value="Predicación">Predicación Dominical</option>
+                    <option value="Escuela Dominical">Escuela Dominical</option>
+                    <option value="Liderazgo">Liderazgo</option>
+                    <option value="Discipulado">Discipulado</option>
+                    <option value="Consejería">Consejería</option>
+                    <option value="Descanso">Descanso Sabático</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Actividad:</label>
+                <input type="text" id="plan-act" class="input" placeholder="Ej: Sermón en Culto Central" />
+              </div>
+              <button id="btn-add-activity" class="btn btn-primary w-full" style="width:100%;">📅 Guardar Actividad</button>
+            </div>
+            <div class="card">
+              <h4 class="card-title text-slate-100 mb-2">Actividades Programadas</h4>
+              <div id="plan-events-list"></div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6 space-y-4">
+            <div class="card space-y-3">
+              <h3 class="card-title text-amber-300">Metas Ministeriales</h3>
+              <div class="flex gap-2">
+                <input type="text" id="plan-goal-text" class="input" placeholder="Ej: Capacitar a 4 nuevos diáconos" />
+                <button id="btn-add-goal" class="btn btn-gold shrink-0">+ Meta</button>
+              </div>
+              <div id="plan-goals-list" class="mt-3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         4. VISTA: ESTUDIO & INVESTIGACIÓN BÍBLICA
+         ===================================================================== -->
+    <section id="view-estudio" class="view-pane">
+      <div class="tabs-header">
+        <button class="tab-btn active" onclick="switchEstudioSubTab('sub-estudio-fichas')">📝 Fichas de Exégesis</button>
+        <button class="tab-btn" onclick="switchEstudioSubTab('sub-estudio-atlas')">🗺️ Atlas & Rutas</button>
+        <button class="tab-btn" onclick="switchEstudioSubTab('sub-estudio-tiempo')">⏳ Cronología</button>
+        <button class="tab-btn" onclick="switchEstudioSubTab('sub-estudio-personajes')">👥 Personajes 360</button>
+        <button class="tab-btn" onclick="switchEstudioSubTab('sub-estudio-matriz')">⚖️ Matriz de Integración</button>
+      </div>
+
+      <!-- Sub: Fichas -->
+      <div id="sub-estudio-fichas" class="sub-pane active">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div class="lg:col-span-5 space-y-4">
+            <div class="card space-y-3">
+              <h3 class="card-title text-emerald-300">Nueva Ficha de Investigación</h3>
+              <div class="form-group">
+                <label class="form-label">Tema o Pasaje:</label>
+                <input type="text" id="res-topic" class="input" placeholder="Ej: Justificación en Romanos 5" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Observaciones y Notas Hermenéuticas:</label>
+                <textarea id="res-notes" class="textarea" style="min-height:140px;" placeholder="Léxico, contexto gramatical, sintaxis y teología bíblica..."></textarea>
+              </div>
+              <button id="btn-save-research" class="btn btn-primary w-full" style="width:100%;">💾 Guardar Ficha</button>
+            </div>
+          </div>
+          <div class="lg:col-span-7 space-y-4">
+            <div class="card">
+              <h4 class="card-title text-slate-100 mb-2">Generador de Mapa Conceptual</h4>
+              <div class="flex gap-2 mb-3">
+                <input type="text" id="map-concepts" class="input" placeholder="Pacto, Gracia, Justificación, Paz, Esperanza" />
+                <button id="btn-generate-map" class="btn btn-gold shrink-0">Crear Mapa</button>
+              </div>
+              <div id="map-output" class="flex flex-wrap gap-2"></div>
+            </div>
+            <div class="card">
+              <h4 class="card-title text-slate-100 mb-2">Fichas de Exégesis Guardadas</h4>
+              <div id="research-list"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sub: Atlas -->
+      <div id="sub-estudio-atlas" class="sub-pane">
+        <div class="card space-y-4">
+          <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+            <h3 class="card-title text-teal-300">Atlas Temático de Rutas Sagradas</h3>
+            <select id="atlas-route-select" class="select" style="width:auto;">
+              <option value="Pablo">Viajes de Pablo</option>
+              <option value="Jesús">Ministerio de Jesús</option>
+              <option value="Patriarcas">Ruta Patriarcal</option>
+              <option value="Éxodo">Éxodo y Desierto</option>
+              <option value="Exilio y retorno">Exilio y Retorno</option>
+              <option value="Iglesia primitiva">Iglesia Primitiva</option>
+            </select>
+          </div>
+          <div id="atlas-route-output"></div>
+        </div>
+      </div>
+
+      <!-- Sub: Cronología -->
+      <div id="sub-estudio-tiempo" class="sub-pane">
+        <div class="card space-y-3">
+          <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+            <h3 class="card-title text-slate-100">Línea de Tiempo Panorámica</h3>
+            <select id="timeline-filter" class="select" style="width:auto;">
+              <option value="all">Todos los Períodos</option>
+              <option value="at">Antiguo Testamento</option>
+              <option value="nt">Nuevo Testamento</option>
+            </select>
+          </div>
+          <div id="timeline-container"></div>
+        </div>
+      </div>
+
+      <!-- Sub: Personajes 360 -->
+      <div id="sub-estudio-personajes" class="sub-pane">
+        <div class="mb-3">
+          <h3 class="card-title text-slate-100">Personajes Bíblicos 360</h3>
+          <p class="card-desc">Análisis multidimensional de carácter y aplicaciones pastorales.</p>
+        </div>
+        <div id="people-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+      </div>
+
+      <!-- Sub: Matriz -->
+      <div id="sub-estudio-matriz" class="sub-pane">
+        <div id="matrix-container"></div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         5. VISTA: ACADEMIA BÍBLICA & LÍDERES
+         ===================================================================== -->
+    <section id="view-academia" class="view-pane">
+      <div class="tabs-header">
+        <button class="tab-btn active" onclick="switchAcademiaSubTab('sub-acad-cursos')">📚 10 Cursos Bíblicos</button>
+        <button class="tab-btn" onclick="switchAcademiaSubTab('sub-acad-lideres')">👥 Escuela de Líderes</button>
+        <button class="tab-btn" onclick="switchAcademiaSubTab('sub-acad-bienestar')">🌿 Bienestar Ministerial</button>
+        <button class="tab-btn" onclick="switchAcademiaSubTab('sub-acad-visuales')">🎨 Esquemas Visuales SVG</button>
+      </div>
+
+      <!-- Sub: Cursos -->
+      <div id="sub-acad-cursos" class="sub-pane active">
+        <div class="hero-banner mb-4" style="padding:1.25rem 1.5rem; background:linear-gradient(135deg, #020617, #1e1b4b); border-color:#6366f1;">
+          <h3 class="hero-title" style="font-size:1.35rem;">Malla Curricular Teológica (10 Programas)</h3>
+          <p class="hero-desc">Marca los módulos a medida que avances. Tu progreso se conserva permanentemente en tu dispositivo.</p>
+        </div>
+        <div id="academy-courses-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+      </div>
+
+      <!-- Sub: Líderes -->
+      <div id="sub-acad-lideres" class="sub-pane">
+        <div id="leaders-track-container" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+      </div>
+
+      <!-- Sub: Bienestar -->
+      <div id="sub-acad-bienestar" class="sub-pane">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div class="lg:col-span-7 card space-y-3">
+            <h3 class="card-title text-emerald-300">Dimensiones del Cuidado Ministerial</h3>
+            <details class="p-3 bg-slate-900 rounded-xl" open>
+              <summary class="font-bold text-amber-300 cursor-pointer text-xs">1. Descanso Sabático Real</summary>
+              <p class="text-xs text-slate-400 font-serif mt-1">Día semanal innegociable de desconexión sin culpa.</p>
+            </details>
+            <details class="p-3 bg-slate-900 rounded-xl">
+              <summary class="font-bold text-amber-300 cursor-pointer text-xs">2. Prevención del Burnout</summary>
+              <p class="text-xs text-slate-400 font-serif mt-1">Delegación, pluralidad de liderazgo y apoyo colegiado.</p>
+            </details>
+            <details class="p-3 bg-slate-900 rounded-xl">
+              <summary class="font-bold text-amber-300 cursor-pointer text-xs">3. Mayordomía Familiar</summary>
+              <p class="text-xs text-slate-400 font-serif mt-1">El hogar es el rebaño prioritario antes de la agenda eclesial.</p>
+            </details>
+          </div>
+          <div class="lg:col-span-5 card space-y-3">
+            <h3 class="card-title text-teal-300">Chequeo Personal</h3>
+            <div class="form-group">
+              <label class="form-label">Nivel de Carga:</label>
+              <select id="well-load" class="select">
+                <option value="Manejable">Manejable y en paz</option>
+                <option value="Alta">Alta (requiere pausas)</option>
+                <option value="Muy alta">Muy alta (riesgo de colapso)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Soporte y Mentores:</label>
+              <select id="well-support" class="select">
+                <option value="Suficiente">Suficiente y seguro</option>
+                <option value="Limitado">Limitado / Aislado</option>
+                <option value="Necesito apoyo">Necesito buscar ayuda</option>
+              </select>
+            </div>
+            <button id="btn-save-wellbeing" class="btn btn-primary w-full" style="width:100%;">🌿 Guardar Chequeo</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sub: Visuales -->
+      <div id="sub-acad-visuales" class="sub-pane">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div class="lg:col-span-5 card space-y-3">
+            <h3 class="card-title text-indigo-300">Generar Diagrama Teológico</h3>
+            <div class="form-group">
+              <label class="form-label">Título:</label>
+              <input type="text" id="vis-title" class="input" value="Las 3 Etapas del Pacto de Gracia" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Conceptos separados por punto y coma (;):</label>
+              <textarea id="vis-items" class="textarea">1. Promesa Soberana a Abraham; 2. Pedagogía en el Éxodo y la Ley; 3. Plenitud Redentora en Cristo</textarea>
+            </div>
+            <div class="flex gap-2">
+              <button id="btn-create-visual" class="btn btn-primary flex-1">Crear Esquema</button>
+              <button id="btn-export-svg" class="btn btn-gold flex-1">Exportar SVG</button>
+            </div>
+          </div>
+          <div class="lg:col-span-7 card">
+            <h4 class="card-title text-slate-100 mb-2">Vista Previa del Esquema</h4>
+            <div id="visual-preview-output"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Teleprompter a Pantalla Completa -->
+  <div id="teleprompter-modal" class="teleprompter-overlay">
+    <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+      <div class="flex items-center gap-3">
+        <button id="btn-prompter-toggle" class="btn btn-primary">⏸ Pausar</button>
+        <label class="text-xs text-slate-400">Velocidad: <input type="range" id="prompter-speed" min="1" max="10" value="3" class="accent-amber-500" /></label>
+      </div>
+      <button class="btn btn-danger" onclick="closeTeleprompter()">✕ Salir del Teleprompter</button>
+    </div>
+    <div id="teleprompter-body" class="teleprompter-content"></div>
+  </div>
+
+  <!-- Barra Flotante de Audio Narrador (Web Speech API) -->
+  <aside id="voice-player-bar" class="voice-bar" style="display:none;" aria-label="Reproductor de voz pastoral">
+    <div style="overflow:hidden;">
+      <span class="form-label" style="margin:0; color:var(--color-amber-gold);">Lector Pastoral Activo</span>
+      <p id="voice-current-text" class="text-xs text-slate-300 font-serif" style="margin:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Reproduciendo...</p>
+    </div>
+    <button id="btn-stop-voice" class="btn btn-sm btn-danger">Detener</button>
+  </aside>
+
+  <!-- Banner de Modo Offline -->
+  <div id="offline-indicator" class="offline-banner" style="display:none;">
+    <span>⚡ Modo sin conexión (Almacenamiento local activo)</span>
+  </div>
+
+  <!-- Pie de Página Unificado -->
+  <footer class="app-footer no-print">
+    <div class="app-container footer-inner">
+      <p class="font-serif italic text-slate-400">
+        "Y el mismo Dios de paz os santifique por completo; y todo vuestro ser, espíritu, alma y cuerpo, sea guardado irreprensible." — 1 Tesalonicenses 5:23
+      </p>
+      <div class="text-slate-500 font-mono text-[11px]">
+        PastoralMente Enterprise • Archivo Único Autónomo • Compatible GitHub Pages
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       JAVASCRIPT AUTÓNOMO EMBEBIDO (SIN DEPENDENCIAS EXTERNAS NI BABEL)
+       ========================================================================= -->
+  <script>
+    (function () {
+      'use strict';
+
+      // 1. MOTOR DE BASE DE DATOS DUAL (IndexedDB + LocalStorage)
+      const DB_NAME = 'PastoralMenteDB';
+      const DB_VER = 2;
+      const LS_PREFIX = 'pbai_';
+
+      const PBAIDB = {
+        db: null,
+        async init() {
+          if (this.db) return this.db;
+          return new Promise((resolve) => {
+            if (!('indexedDB' in window)) return resolve(null);
+            const req = indexedDB.open(DB_NAME, DB_VER);
+            req.onupgradeneeded = (e) => {
+              const db = e.target.result;
+              const stores = ['cases', 'sermons', 'research', 'events', 'goals', 'courses', 'visuals', 'wellbeing'];
+              stores.forEach((s) => {
+                if (!db.objectStoreNames.contains(s)) {
+                  db.createObjectStore(s, { keyPath: (s === 'courses' || s === 'wellbeing') ? 'key' : 'id' });
+                }
+              });
+            };
+            req.onsuccess = (e) => { this.db = e.target.result; resolve(this.db); };
+            req.onerror = () => resolve(null);
+          });
+        },
+        async setItem(store, item) {
+          try {
+            const list = this.getLS(store) || [];
+            const id = item.id || item.key;
+            const idx = list.findIndex(x => (x.id || x.key) === id);
+            if (idx >= 0) list[idx] = item; else list.unshift(item);
+            localStorage.setItem(LS_PREFIX + store, JSON.stringify(list));
+          } catch (e) {}
+
+          const db = await this.init();
+          if (!db) return item;
+          return new Promise(resolve => {
+            try {
+              const tx = db.transaction(store, 'readwrite');
+              tx.objectStore(store).put(item);
+              tx.oncomplete = () => resolve(item);
+              tx.onerror = () => resolve(item);
+            } catch (e) { resolve(item); }
+          });
+        },
+        async getAll(store) {
+          const db = await this.init();
+          if (!db) return this.getLS(store) || [];
+          return new Promise(resolve => {
+            try {
+              const tx = db.transaction(store, 'readonly');
+              const req = tx.objectStore(store).getAll();
+              req.onsuccess = () => resolve((req.result && req.result.length > 0) ? req.result : (this.getLS(store) || []));
+              req.onerror = () => resolve(this.getLS(store) || []);
+            } catch (e) { resolve(this.getLS(store) || []); }
+          });
+        },
+        async deleteItem(store, id) {
+          try {
+            const list = (this.getLS(store) || []).filter(x => (x.id || x.key) !== id);
+            localStorage.setItem(LS_PREFIX + store, JSON.stringify(list));
+          } catch (e) {}
+          const db = await this.init();
+          if (!db) return true;
+          return new Promise(resolve => {
+            try {
+              const tx = db.transaction(store, 'readwrite');
+              tx.objectStore(store).delete(id);
+              tx.oncomplete = () => resolve(true);
+              tx.onerror = () => resolve(false);
+            } catch (e) { resolve(false); }
+          });
+        },
+        getLS(store) {
+          try {
+            const r = localStorage.getItem(LS_PREFIX + store);
+            return r ? JSON.parse(r) : null;
+          } catch (e) { return null; }
+        }
+      };
+
+      // 2. CONSTANTES Y DATOS POR DEFECTO
+      const INITIAL_CASES = [
+        {
+          id: 'case-demo-1',
+          clientInitials: 'M.R.',
+          age: 29,
+          maritalStatus: 'Soltera',
+          presentingProblem: 'Siente constante pánico de haber cometido el "pecado imperdonable". Duda de su salvación ante pensamientos intrusivos involuntarios.',
+          currentStage: '1_Admision',
+          createdAt: '12 Oct 2026',
+          clinicalAssessments: [{ phq9Total: 12, gad7Total: 14, spiritualTotal: 8 }]
+        },
+        {
+          id: 'case-demo-2',
+          clientInitials: 'E.V.',
+          age: 46,
+          maritalStatus: 'Casado, 2 hijos',
+          presentingProblem: 'Duelo traumático por pérdida súbita de su hermano menor hace 4 meses. Amargura contra Dios e insomnio.',
+          currentStage: '1_Admision',
+          createdAt: '15 Oct 2026'
+        },
+        {
+          id: 'case-demo-3',
+          clientInitials: 'J. & C.',
+          age: 38,
+          maritalStatus: 'Casados (11 años)',
+          presentingProblem: 'Patrón destructivo de comunicación: demanda-retirada y cerrazón emocional (stonewalling).',
+          currentStage: '1_Admision',
+          createdAt: '18 Oct 2026'
+        }
+      ];
+
+      const COURSES_DATA = [
+        ['Introducción al Antiguo Testamento', 'Canon y panorama', 'Pentateuco', 'Historia de Israel', 'Poesía y sabiduría', 'Profetas'],
+        ['Introducción al Nuevo Testamento', 'Contexto del siglo I', 'Evangelios', 'Hechos', 'Cartas paulinas', 'Cartas generales y Apocalipsis'],
+        ['Hermenéutica', 'Observación', 'Género y contexto', 'Historia y cultura', 'Interpretación', 'Aplicación'],
+        ['Exégesis', 'Delimitación', 'Estructura', 'Palabras clave', 'Contexto canónico', 'Síntesis'],
+        ['Geografía Bíblica', 'Cercano Oriente', 'Israel y Judá', 'Galilea y Judea', 'Mediterráneo', 'Geografía y misión'],
+        ['Historia Bíblica', 'Patriarcas', 'Éxodo y asentamiento', 'Monarquía', 'Exilio y retorno', 'Segundo Templo'],
+        ['Teología Sistemática', 'Escritura', 'Dios y creación', 'Humanidad y pecado', 'Cristología', 'Iglesia y esperanza'],
+        ['Liderazgo Cristiano', 'Carácter', 'Comunicación', 'Equipos', 'Conflictos y ética', 'Evaluación'],
+        ['Consejería Pastoral', 'Escucha', 'Límites', 'Duelo y crisis', 'Derivación', 'Confidencialidad'],
+        ['Discipulado', 'Fundamentos', 'Hábitos', 'Comunidad', 'Mentoría', 'Multiplicación']
+      ];
+
+      const PEOPLE_DATA = [
+        { name: 'Moisés', ref: 'Éxodo 2 – Dt 34', strengths: 'Perseverancia, humildad, intercesión y pastoreo.', tensions: 'Ira reactiva y episodio de Meriba.', app: 'Liderar requiere dependencia divina y equipo de apoyo.' },
+        { name: 'Rut', ref: 'Rut 1 – 4', strengths: 'Lealtad entrañable (Jesed), integridad y solidaridad.', tensions: 'Migración forzada, viudez y vulnerabilidad.', app: 'La fidelidad divina se vive en actos concretos de cuidado.' },
+        { name: 'David', ref: '1 Sam 16 – 1 Re 2', strengths: 'Adoración sincera, valentía y arrepentimiento.', tensions: 'Abuso de poder y crisis familiar.', app: 'No idealizar líderes: la gracia perdona pero exige verdad.' },
+        { name: 'María de Nazaret', ref: 'Lucas 1–2', strengths: 'Disponibilidad total, valentía y meditación interior.', tensions: 'Incertidumbre y espada atravesando el alma.', app: 'La fe profunda coexiste con preguntas sin respuesta.' },
+        { name: 'Pablo', ref: 'Hechos 9–28', strengths: 'Celo evangelístico y perseverancia en cadenas.', tensions: 'Conflictos misioneros y aguijón en la carne.', app: 'La convicción doctrinal debe ser coronada con amor.' }
+      ];
+
+      const ROUTES_DATA = {
+        'Pablo': ['Antioquía de Siria', 'Chipre y Salamina', 'Galacia y Asia Menor', 'Macedonia (Filipos)', 'Atenas y Corinto', 'Roma (Hechos 28)'],
+        'Jesús': ['Belén de Judea', 'Nazaret de Galilea', 'Cafarnaúm', 'Decápolis y Cesarea', 'Jerusalén y Getsemaní'],
+        'Patriarcas': ['Ur y Harán', 'Siquem y Betel', 'Hebrón y Berseba', 'Peniel', 'Egipto y Gosen'],
+        'Éxodo': ['Ramsés y Sucot', 'Paso del Mar', 'Mara y Elim', 'Monte Sinaí (Pacto)', 'Cades-barnea y Moab'],
+        'Exilio y retorno': ['Jerusalén caída', 'Riberas de Babilonia', 'Susa (Persia)', 'Retorno con Esdras', 'Murallas de Nehemías'],
+        'Iglesia primitiva': ['Jerusalén (Pentecostés)', 'Samaria y Cesarea', 'Antioquía', 'Éfeso y Asia', 'Roma y confín']
+      };
+
+      const TIMELINE_DATA = [
+        { era: 'Patriarcas', text: 'Génesis 12–50', desc: 'Abraham, pacto de gracia, Isaac, Jacob y José.', period: 'at' },
+        { era: 'Éxodo y Desierto', text: 'Éxodo – Deuteronomio', desc: 'Liberación, Ley en Sinaí y formación comunitaria.', period: 'at' },
+        { era: 'Monarquía', text: 'Samuel y Reyes', desc: 'Saúl, David, Salomón, división del reino y profetas.', period: 'at' },
+        { era: 'Exilio y Retorno', text: '2 Reyes 25; Esdras – Nehemías', desc: 'Cautiverio babilónico y reedificación del Templo.', period: 'at' },
+        { era: 'Evangelios', text: 'Mateo, Marcos, Lucas, Juan', desc: 'Encarnación, muerte expiatoria y resurrección gloriosa.', period: 'nt' },
+        { era: 'Iglesia Primitiva', text: 'Hechos y Epístolas', desc: 'Derramamiento del Espíritu, expansión gentil y esperanza.', period: 'nt' }
+      ];
+
+      const INTEGRATION_FRAMEWORKS = [
+        { therapy: 'TCC (Beck / Ellis)', concept: 'Reestructuración cognitiva.', biblical: 'Metanoia y renovación mental (Romanos 12:2).', passage: 'Filipenses 4:8', app: 'Llevar cautivo todo pensamiento a Cristo.' },
+        { therapy: 'Logoterapia (Frankl)', concept: 'Voluntad de sentido.', biblical: 'Providencia divina en el sufrimiento (Rom 8:28).', passage: '2 Cor 1:3-4', app: 'Encontrar propósito redentor en el dolor.' },
+        { therapy: 'ACT (Hayes)', concept: 'Defusión y aceptación.', biblical: 'Rendición ante la soberanía divina.', passage: '2 Cor 12:9', app: 'Despenalizar la emoción y caminar en fe.' },
+        { therapy: 'Sistémica (Bowen)', concept: 'Diferenciación del self.', biblical: 'Límites bíblicos sanos (Gál 6:5).', passage: 'Efesios 4:15', app: 'Saneamiento de legados destructivos.' }
+      ];
+
+      const PHQ9_QUESTIONS = [
+        '1. Poco interés o placer en hacer cosas',
+        '2. Sentirse decaído/a, deprimido/a o desesperanzado/a',
+        '3. Dificultad para conciliar o mantener el sueño, o dormir demasiado',
+        '4. Sentirse cansado/a o con poca energía',
+        '5. Poco apetito o comer en exceso',
+        '6. Sentirse mal con uno mismo/a o que ha decepcionado a su familia',
+        '7. Dificultad para concentrarse en la lectura, trabajo u oración',
+        '8. Moverse o hablar más lento o estar tan inquieto/a que no puede parar',
+        '9. Pensamientos de que estaría mejor muerto/a o de querer lastimarse (CRÍTICO)'
+      ];
+
+      const GAD7_QUESTIONS = [
+        '1. Sentirse nervioso/a, ansioso/a o al límite',
+        '2. No poder parar o controlar la preocupación',
+        '3. Preocuparse demasiado por diferentes cosas',
+        '4. Dificultad para relajarse',
+        '5. Estar tan inquieto/a que es difícil permanecer quieto/a',
+        '6. Irritarse o enojarse con facilidad',
+        '7. Sentir miedo como si algo terrible fuera a suceder'
+      ];
+
+      const SPIRITUAL_QUESTIONS = [
+        '1. Experimento paz interior al descansar en la justificación en Cristo (no en mis obras)',
+        '2. Veo a Dios como un Padre compasivo y cercano, no como un verdugo castigador',
+        '3. Creo que mi dolor actual tiene un propósito redentor bajo la soberanía divina',
+        '4. Encuentro consuelo sincero en la oración y la Palabra',
+        '5. Cuento con una comunidad o mentor donde ser vulnerable sin temor al juicio'
+      ];
+
+      // 3. UTILIDADES
+      const esc = (x) => String(x ?? '').replace(/[&<>"']/g, (c) => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      }[c]));
+
+      async function computeSHA256(input) {
+        if (window.crypto && window.crypto.subtle) {
+          try {
+            const buf = await window.crypto.subtle.digest('SHA-256', new TextEncoder().encode(input));
+            return 'SHA256:' + Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
+          } catch (e) {}
+        }
+        let h = 0;
+        for (let i = 0; i < input.length; i++) h = ((h << 5) - h + input.charCodeAt(i)) | 0;
+        return 'SHA256-FB:' + Math.abs(h).toString(16).toUpperCase();
+      }
+
+      const Narrator = {
+        synth: window.speechSynthesis || null,
+        speak(text) {
+          if (!this.synth) return alert('Síntesis de voz no disponible.');
+          this.stop();
+          const clean = text.replace(/[*#_~`]/g, '').trim();
+          if (!clean) return;
+          const u = new SpeechSynthesisUtterance(clean);
+          u.rate = 0.95;
+          u.lang = 'es-ES';
+          const voices = this.synth.getVoices();
+          const v = voices.find(x => x.lang.startsWith('es'));
+          if (v) u.voice = v;
+          u.onend = () => this.updateUI('');
+          u.onerror = () => this.updateUI('');
+          this.updateUI(clean);
+          this.synth.speak(u);
+        },
+        stop() {
+          if (this.synth) this.synth.cancel();
+          this.updateUI('');
+        },
+        updateUI(text) {
+          const bar = document.getElementById('voice-player-bar');
+          const lbl = document.getElementById('voice-current-text');
+          if (!bar) return;
+          if (text) {
+            bar.style.display = 'flex';
+            if (lbl) lbl.textContent = text.slice(0, 50) + '...';
+          } else {
+            bar.style.display = 'none';
+          }
+        }
+      };
+
+      // 4. CAMBIO DE VISTAS PRINCIPALES
+      window.switchMainView = function (viewId) {
+        document.querySelectorAll('.view-pane').forEach(v => v.classList.remove('active'));
+        document.querySelectorAll('.nav-btn').forEach(b => {
+          b.classList.toggle('active', b.dataset.view === viewId);
+        });
+        const target = document.getElementById(viewId);
+        if (target) {
+          target.classList.add('active');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        if (viewId === 'view-dashboard') renderDashboardCharts();
+      };
+
+      window.switchConsejeriaSubTab = function (paneId) {
+        document.querySelectorAll('#view-consejeria .sub-pane').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('#view-consejeria .tab-btn').forEach(b => {
+          b.classList.toggle('active', b.getAttribute('onclick')?.includes(paneId));
+        });
+        const target = document.getElementById(paneId);
+        if (target) target.classList.add('active');
+      };
+
+      window.switchSermonesSubTab = function (paneId) {
+        document.querySelectorAll('#view-sermones .sub-pane').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('#view-sermones .tab-btn').forEach(b => {
+          b.classList.toggle('active', b.getAttribute('onclick')?.includes(paneId));
+        });
+        const target = document.getElementById(paneId);
+        if (target) target.classList.add('active');
+      };
+
+      window.switchEstudioSubTab = function (paneId) {
+        document.querySelectorAll('#view-estudio .sub-pane').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('#view-estudio .tab-btn').forEach(b => {
+          b.classList.toggle('active', b.getAttribute('onclick')?.includes(paneId));
+        });
+        const target = document.getElementById(paneId);
+        if (target) target.classList.add('active');
+      };
+
+      window.switchAcademiaSubTab = function (paneId) {
+        document.querySelectorAll('#view-academia .sub-pane').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('#view-academia .tab-btn').forEach(b => {
+          b.classList.toggle('active', b.getAttribute('onclick')?.includes(paneId));
+        });
+        const target = document.getElementById(paneId);
+        if (target) target.classList.add('active');
+      };
+
+      // 5. CRONÓMETRO DE ATRIL Y TELEPROMPTER
+      let timerMs = 0;
+      let timerInt = null;
+      let timerStart = 0;
+
+      function updateClock() {
+        const el = document.getElementById('pulpit-clock');
+        if (!el) return;
+        const totalSec = Math.floor(timerMs / 1000);
+        const m = Math.floor(totalSec / 60);
+        const s = totalSec % 60;
+        el.textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+        const maxMins = Number(document.getElementById('sermon-mins')?.value) || 30;
+        if (m >= maxMins) el.classList.add('alert'); else el.classList.remove('alert');
+      }
+
+      function setupTimer() {
+        document.getElementById('btn-timer-start')?.addEventListener('click', () => {
+          if (!timerInt) {
+            timerStart = Date.now() - timerMs;
+            timerInt = setInterval(() => { timerMs = Date.now() - timerStart; updateClock(); }, 250);
+          }
+        });
+        document.getElementById('btn-timer-stop')?.addEventListener('click', () => {
+          clearInterval(timerInt);
+          timerInt = null;
+        });
+        document.getElementById('btn-timer-reset')?.addEventListener('click', () => {
+          clearInterval(timerInt);
+          timerInt = null;
+          timerMs = 0;
+          updateClock();
+        });
+      }
+
+      // Teleprompter
+      let prompterScrollInt = null;
+      let prompterPaused = false;
+
+      window.openTeleprompter = function () {
+        const modal = document.getElementById('teleprompter-modal');
+        const body = document.getElementById('teleprompter-body');
+        const content = document.getElementById('sermon-body')?.value || '';
+        if (!modal || !body) return;
+        body.innerHTML = `<h1 style="color:#fbbf24; margin-bottom:1rem;">${esc(document.getElementById('sermon-title')?.value || 'Sermón')}</h1>` +
+                         `<p style="color:#34d399; margin-bottom:2rem; font-size:0.8em;">${esc(document.getElementById('sermon-text')?.value || '')}</p>` +
+                         `<div style="white-space:pre-wrap;">${esc(content)}</div>`;
+        modal.classList.add('open');
+        startPrompterScroll();
+      };
+
+      window.closeTeleprompter = function () {
+        const modal = document.getElementById('teleprompter-modal');
+        if (modal) modal.classList.remove('open');
+        clearInterval(prompterScrollInt);
+      };
+
+      function startPrompterScroll() {
+        clearInterval(prompterScrollInt);
+        const body = document.getElementById('teleprompter-body');
+        const speedInput = document.getElementById('prompter-speed');
+        prompterPaused = false;
+        document.getElementById('btn-prompter-toggle').textContent = '⏸ Pausar';
+        prompterScrollInt = setInterval(() => {
+          if (!prompterPaused && body) {
+            const speed = Number(speedInput?.value) || 3;
+            body.scrollTop += (speed * 0.5);
+          }
+        }, 30);
+      }
+
+      document.getElementById('btn-prompter-toggle')?.addEventListener('click', () => {
+        prompterPaused = !prompterPaused;
+        document.getElementById('btn-prompter-toggle').textContent = prompterPaused ? '▶ Reanudar' : '⏸ Pausar';
+      });
+
+      document.addEventListener('keydown', (e) => {
+        const modal = document.getElementById('teleprompter-modal');
+        if (modal && modal.classList.contains('open')) {
+          if (e.key === 'Escape') closeTeleprompter();
+          if (e.code === 'Space') {
+            e.preventDefault();
+            prompterPaused = !prompterPaused;
+            document.getElementById('btn-prompter-toggle').textContent = prompterPaused ? '▶ Reanudar' : '⏸ Pausar';
+          }
+        }
+        if (e.altKey && e.key.toLowerCase() === 'p') {
+          switchMainView('view-sermones');
+        }
+      });
+
+      // 6. CANVAS NATIVOS: RADAR Y BARRAS
+      function renderDashboardCharts() {
+        // Radar Chart en Canvas puro
+        const radarC = document.getElementById('dashboard-radar-canvas');
+        if (radarC) {
+          const ctx = radarC.getContext('2d');
+          const w = radarC.width;
+          const h = radarC.height;
+          ctx.clearRect(0, 0, w, h);
+
+          const cx = w / 2;
+          const cy = h / 2;
+          const r = Math.min(cx, cy) - 40;
+          const labels = ['Emocional', 'Ansiedad', 'Depresión', 'Familiar', 'Gracia', 'Resiliencia'];
+          const values = [78, 68, 74, 82, 88, 80]; // Valores normalizados (0-100)
+          const count = labels.length;
+
+          // Círculos concéntricos
+          ctx.strokeStyle = '#334155';
+          ctx.lineWidth = 1;
+          for (let step = 1; step <= 4; step++) {
+            ctx.beginPath();
+            const curR = (r / 4) * step;
+            for (let i = 0; i < count; i++) {
+              const angle = (Math.PI * 2 / count) * i - Math.PI / 2;
+              const x = cx + curR * Math.cos(angle);
+              const y = cy + curR * Math.sin(angle);
+              if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+            }
+            ctx.closePath();
+            ctx.stroke();
+          }
+
+          // Ejes y Etiquetas
+          ctx.fillStyle = '#94a3b8';
+          ctx.font = '10px sans-serif';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          for (let i = 0; i < count; i++) {
+            const angle = (Math.PI * 2 / count) * i - Math.PI / 2;
+            const x = cx + (r + 20) * Math.cos(angle);
+            const y = cy + (r + 20) * Math.sin(angle);
+            ctx.fillText(labels[i], x, y);
+          }
+
+          // Polígono de Datos
+          ctx.fillStyle = 'rgba(16, 185, 129, 0.35)';
+          ctx.strokeStyle = '#10b981';
+          ctx.lineWidth = 2.5;
+          ctx.beginPath();
+          for (let i = 0; i < count; i++) {
+            const angle = (Math.PI * 2 / count) * i - Math.PI / 2;
+            const valR = (r * (values[i] / 100));
+            const x = cx + valR * Math.cos(angle);
+            const y = cy + valR * Math.sin(angle);
+            if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+          }
+          ctx.closePath();
+          ctx.fill();
+          ctx.stroke();
+        }
+
+        // Bar Chart en Canvas puro
+        const barC = document.getElementById('dashboard-bar-canvas');
+        if (barC) {
+          const ctx = barC.getContext('2d');
+          const w = barC.width;
+          const h = barC.height;
+          ctx.clearRect(0, 0, w, h);
+
+          const stages = ['Admisión', 'Evaluación', 'Plan 5P', 'Seguimiento', 'Alta'];
+          const counts = [3, 2, 4, 3, 2];
+          const maxVal = Math.max(...counts, 5);
+          const barW = 42;
+          const startX = 40;
+          const bottomY = h - 35;
+          const chartH = h - 70;
+
+          // Eje X
+          ctx.strokeStyle = '#334155';
+          ctx.beginPath();
+          ctx.moveTo(startX - 10, bottomY);
+          ctx.lineTo(w - 20, bottomY);
+          ctx.stroke();
+
+          // Barras
+          stages.forEach((label, i) => {
+            const x = startX + i * 65;
+            const bHeight = (counts[i] / maxVal) * chartH;
+            const y = bottomY - bHeight;
+
+            // Barra con gradiente
+            const grad = ctx.createLinearGradient(0, y, 0, bottomY);
+            grad.addColorStop(0, '#f59e0b');
+            grad.addColorStop(1, '#0f766e');
+            ctx.fillStyle = grad;
+            ctx.beginPath();
+            ctx.roundRect ? ctx.roundRect(x, y, barW, bHeight, [6, 6, 0, 0]) : ctx.rect(x, y, barW, bHeight);
+            ctx.fill();
+
+            // Etiqueta número arriba
+            ctx.fillStyle = '#f8fafc';
+            ctx.font = 'bold 11px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText(counts[i], x + barW / 2, y - 6);
+
+            // Etiqueta abajo
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = '10px sans-serif';
+            ctx.fillText(label, x + barW / 2, bottomY + 16);
+          });
+        }
+      }
+
+      // 7. INICIALIZACIÓN GLOBAL DE MÓDULOS
+      async function initApp() {
+        await PBAIDB.init();
+
+        // Seed inicial si está vacío
+        let cases = await PBAIDB.getAll('cases');
+        if (cases.length === 0) {
+          for (const c of INITIAL_CASES) await PBAIDB.setItem('cases', c);
+          cases = await PBAIDB.getAll('cases');
+        }
+
+        let activeCase = cases[0] || null;
+
+        // Render KPIs
+        async function refreshKPIs() {
+          const curCases = await PBAIDB.getAll('cases');
+          const curSermons = await PBAIDB.getAll('sermons');
+          const curResearch = await PBAIDB.getAll('research');
+          const curEvents = await PBAIDB.getAll('events');
+          const curGoals = await PBAIDB.getAll('goals');
+          const curVisuals = await PBAIDB.getAll('visuals');
+
+          document.getElementById('kpi-cases').textContent = curCases.length;
+          document.getElementById('kpi-sermons').textContent = curSermons.length;
+          document.getElementById('kpi-research').textContent = curResearch.length;
+          document.getElementById('kpi-events').textContent = curEvents.length;
+          document.getElementById('kpi-goals').textContent = curGoals.filter(x => x.done).length;
+          document.getElementById('kpi-visuals').textContent = curVisuals.length;
+
+          const actList = document.getElementById('index-recent-activity');
+          if (actList) {
+            actList.innerHTML = curCases.slice(0, 3).map(c => `
+              <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 mb-2 flex justify-between items-center text-xs">
+                <div>
+                  <strong class="text-emerald-400">${esc(c.clientInitials)} (${c.age}a)</strong>
+                  <p class="text-slate-400 font-serif truncate" style="max-width:320px;">${esc(c.presentingProblem)}</p>
+                </div>
+                <button class="btn btn-sm btn-gold" onclick="selectCaseGlobal('${esc(c.id)}')">Abrir Ficha</button>
+              </div>
+            `).join('') || '<p class="text-xs text-slate-500 font-serif">Sin expedientes recientes.</p>';
+          }
+        }
+        refreshKPIs();
+        renderDashboardCharts();
+
+        // Selector de Caso
+        window.selectCaseGlobal = function (id) {
+          activeCase = cases.find(x => x.id === id) || cases[0];
+          updateCaseUI();
+          switchMainView('view-consejeria');
+        };
+
+        window.createNewCasePrompt = function () {
+          const init = prompt('Iniciales del paciente (ej: L.G.):');
+          if (!init) return;
+          const age = Number(prompt('Edad:', '34')) || 34;
+          const prob = prompt('Motivo de consulta:', 'Crisis de ansiedad y culpa');
+          const newC = {
+            id: 'case-' + Date.now(),
+            clientInitials: init.toUpperCase(),
+            age,
+            maritalStatus: 'Casado/a',
+            presentingProblem: prob || 'En evaluación inicial',
+            currentStage: '1_Admision',
+            createdAt: new Date().toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' })
+          };
+          PBAIDB.setItem('cases', newC).then(async () => {
+            cases = await PBAIDB.getAll('cases');
+            activeCase = newC;
+            updateCaseUI();
+            refreshKPIs();
+            alert('¡Nuevo paciente añadido al fichero!');
+          });
+        };
+
+        document.getElementById('btn-quick-new-case')?.addEventListener('click', createNewCasePrompt);
+
+        function updateCaseUI() {
+          const selects = document.querySelectorAll('.select-active-case');
+          selects.forEach(sel => {
+            sel.innerHTML = cases.map(c => `
+              <option value="${esc(c.id)}" ${activeCase && activeCase.id === c.id ? 'selected' : ''}>
+                ${esc(c.clientInitials)} (${c.age}a) - ${esc((c.presentingProblem || '').slice(0, 30))}...
+              </option>
+            `).join('');
+            sel.onchange = () => {
+              activeCase = cases.find(x => x.id === sel.value);
+              updateCaseUI();
+            };
+          });
+
+          document.querySelectorAll('.active-case-name').forEach(el => {
+            el.textContent = activeCase ? `${activeCase.clientInitials} (${activeCase.age} años)` : 'Sin paciente';
+          });
+
+          renderPipelineSteps();
+          renderCaseList();
+        }
+
+        // Render Pipeline
+        function renderPipelineSteps() {
+          const grid = document.getElementById('pipeline-steps-grid');
+          if (!grid || !activeCase) return;
+          const cur = activeCase.currentStage || '1_Admision';
+          const steps = [
+            { id: '1_Admision', title: '1. Admisión & Triage', desc: 'Motivo y evaluación inicial', tab: 'sub-fichero' },
+            { id: '2_Consentimiento', title: '2. Consentimiento & Firma', desc: 'Bioética y firma digital', tab: 'sub-consentimiento' },
+            { id: '3_Evaluacion', title: '3. Psicometría', desc: 'PHQ-9, GAD-7 y Espiritual', tab: 'sub-psicometria' },
+            { id: '4_Formulacion5P_DSM5', title: '4. Formulación 5P', desc: 'DSM-5-TR y etiología integral', tab: 'sub-motor5p' },
+            { id: '5_PlanTerapeutico', title: '5. Plan Terapéutico', desc: 'Protocolos de gracia y TCC', tab: 'sub-gottman' },
+            { id: '6_SeguimientoSOAPE', title: '6. Seguimiento SOAPE', desc: 'Timeline longitudinal', tab: 'sub-copiloto' },
+            { id: '7_PrevencionRecaidas', title: '7. Plan de Crisis', desc: 'Stanley-Brown SPI', tab: 'sub-crisis' },
+            { id: '8_AltaEvidencia', title: '8. Alta por Evidencia', desc: 'Remisión objetiva verificable', tab: 'sub-alta' },
+            { id: '9_PostAlta', title: '9. Post-Alta', desc: 'Acompañamiento y santificación', tab: 'sub-pipeline' }
+          ];
+
+          grid.innerHTML = steps.map((s, idx) => {
+            const isAct = cur === s.id;
+            return `
+              <div class="pipeline-step ${isAct ? 'active' : ''}">
+                <div class="flex justify-between items-center">
+                  <div class="flex items-center gap-2">
+                    <div class="step-num">${idx + 1}</div>
+                    <strong class="text-xs text-slate-100">${s.title}</strong>
+                  </div>
+                  ${isAct ? '<span class="badge-tag">En Curso</span>' : ''}
+                </div>
+                <p class="text-xs text-slate-400 font-serif">${s.desc}</p>
+                <div class="flex justify-between items-center pt-2 border-t border-slate-800">
+                  <button class="btn btn-sm btn-primary" onclick="switchConsejeriaSubTab('${s.tab}')">Abrir</button>
+                  ${!isAct ? `<button class="text-[10px] text-amber-300 underline cursor-pointer" onclick="setCaseStage('${s.id}')">Fijar</button>` : ''}
+                </div>
+              </div>
+            `;
+          }).join('');
+        }
+
+        window.setCaseStage = async function (stageId) {
+          if (!activeCase) return;
+          activeCase.currentStage = stageId;
+          await PBAIDB.setItem('cases', activeCase);
+          renderPipelineSteps();
+        };
+
+        // Fichero de Casos
+        function renderCaseList() {
+          const list = document.getElementById('client-records-list');
+          if (!list) return;
+          list.innerHTML = cases.map(c => `
+            <div class="card mb-3 flex justify-between items-start text-xs">
+              <div>
+                <span class="badge-tag" style="margin-bottom:4px;">ID: ${esc(c.id)}</span>
+                <h4 class="card-title text-slate-100">${esc(c.clientInitials)} (${c.age}a) - ${esc(c.maritalStatus || '')}</h4>
+                <p class="text-slate-300 font-serif">${esc(c.presentingProblem)}</p>
+              </div>
+              <div class="flex gap-2 shrink-0">
+                <button class="btn btn-sm btn-gold" onclick="selectCaseGlobal('${esc(c.id)}')">Activar</button>
+                <button class="btn btn-sm btn-danger" onclick="deleteCaseGlobal('${esc(c.id)}')">✕</button>
+              </div>
+            </div>
+          `).join('');
+        }
+
+        window.deleteCaseGlobal = async function (id) {
+          if (confirm('¿Eliminar expediente?')) {
+            await PBAIDB.deleteItem('cases', id);
+            cases = await PBAIDB.getAll('cases');
+            activeCase = cases[0] || null;
+            updateCaseUI();
+            refreshKPIs();
+          }
+        };
+
+        updateCaseUI();
+
+        // 8. CANVAS DE FIRMA DIGITAL
+        const sigCanvas = document.getElementById('signature-canvas');
+        if (sigCanvas) {
+          const sCtx = sigCanvas.getContext('2d');
+          sCtx.lineWidth = 2.5;
+          sCtx.lineCap = 'round';
+          sCtx.strokeStyle = '#0f172a';
+          let sDrawing = false;
+          let sDrawn = false;
+
+          function sCoords(e) {
+            const r = sigCanvas.getBoundingClientRect();
+            if (e.touches && e.touches[0]) {
+              return { x: e.touches[0].clientX - r.left, y: e.touches[0].clientY - r.top };
+            }
+            return { x: e.clientX - r.left, y: e.clientY - r.top };
+          }
+          function sStart(e) { e.preventDefault(); sDrawing = true; const p = sCoords(e); sCtx.beginPath(); sCtx.moveTo(p.x, p.y); }
+          function sDraw(e) { if (!sDrawing) return; e.preventDefault(); const p = sCoords(e); sCtx.lineTo(p.x, p.y); sCtx.stroke(); sDrawn = true; }
+          function sStop() { sDrawing = false; }
+
+          sigCanvas.addEventListener('mousedown', sStart);
+          sigCanvas.addEventListener('mousemove', sDraw);
+          sigCanvas.addEventListener('mouseup', sStop);
+          sigCanvas.addEventListener('touchstart', sStart, { passive: false });
+          sigCanvas.addEventListener('touchmove', sDraw, { passive: false });
+          sigCanvas.addEventListener('touchend', sStop);
+
+          document.getElementById('btn-clear-signature')?.addEventListener('click', () => {
+            sCtx.clearRect(0, 0, sigCanvas.width, sigCanvas.height);
+            sDrawn = false;
+          });
+
+          document.getElementById('btn-finalize-consent')?.addEventListener('click', async () => {
+            if (!activeCase) return alert('Selecciona un paciente.');
+            if (!sDrawn) return alert('Por favor estampa la firma en el recuadro.');
+            const dataUrl = sigCanvas.toDataURL('image/png');
+            const docId = document.getElementById('consent-doc-id')?.value || 'DNI-0000';
+            const hash = await computeSHA256(`${activeCase.id}|${docId}|${Date.now()}`);
+            activeCase.informedConsent = { docId, dateSigned: new Date().toLocaleDateString('es-ES'), signatureDataUrl: dataUrl, hash };
+            activeCase.currentStage = '3_Evaluacion';
+            await PBAIDB.setItem('cases', activeCase);
+
+            document.getElementById('consent-hash-display').textContent = 'Sello Criptográfico SHA-256: ' + hash;
+            const img = document.getElementById('consent-signature-img');
+            if (img) { img.src = dataUrl; img.style.display = 'block'; }
+            alert('¡Consentimiento bioético sellado y guardado!');
+            renderPipelineSteps();
+          });
+        }
+
+        // 9. CUESTIONARIOS PSICOMÉTRICOS
+        const phqContainer = document.getElementById('phq9-items-container');
+        if (phqContainer) {
+          phqContainer.innerHTML = PHQ9_QUESTIONS.map((q, idx) => `
+            <div class="p-2 bg-slate-900 rounded-lg flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+              <span class="${idx === 8 ? 'text-rose-300 font-bold' : ''}">${q}</span>
+              <div class="flex gap-2">
+                ${[0, 1, 2, 3].map(v => `<label class="cursor-pointer"><input type="radio" name="phq_${idx}" value="${v}" ${v === (idx === 1 ? 2 : 0) ? 'checked' : ''} class="phq-radio"> ${v}</label>`).join('')}
+              </div>
+            </div>
+          `).join('');
+        }
+
+        const gadContainer = document.getElementById('gad7-items-container');
+        if (gadContainer) {
+          gadContainer.innerHTML = GAD7_QUESTIONS.map((q, idx) => `
+            <div class="p-2 bg-slate-900 rounded-lg flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+              <span>${q}</span>
+              <div class="flex gap-2">
+                ${[0, 1, 2, 3].map(v => `<label class="cursor-pointer"><input type="radio" name="gad_${idx}" value="${v}" ${v === (idx === 0 ? 2 : 0) ? 'checked' : ''} class="gad-radio"> ${v}</label>`).join('')}
+              </div>
+            </div>
+          `).join('');
+        }
+
+        const espContainer = document.getElementById('spiritual-items-container');
+        if (espContainer) {
+          espContainer.innerHTML = SPIRITUAL_QUESTIONS.map((q, idx) => `
+            <div class="p-2 bg-slate-900 rounded-lg flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+              <span>${q}</span>
+              <div class="flex gap-2">
+                ${[0, 1, 2, 3, 4].map(v => `<label class="cursor-pointer"><input type="radio" name="esp_${idx}" value="${v}" ${v === 3 ? 'checked' : ''} class="esp-radio"> ${v}</label>`).join('')}
+              </div>
+            </div>
+          `).join('');
+        }
+
+        document.getElementById('btn-calc-psychometrics')?.addEventListener('click', async () => {
+          let phqTot = 0, item9Val = 0;
+          document.querySelectorAll('.phq-radio:checked').forEach((el, i) => {
+            const v = Number(el.value);
+            phqTot += v;
+            if (i === 8) item9Val = v;
+          });
+          let gadTot = 0;
+          document.querySelectorAll('.gad-radio:checked').forEach(el => gadTot += Number(el.value));
+          let espTot = 0;
+          document.querySelectorAll('.esp-radio:checked').forEach(el => espTot += Number(el.value));
+
+          const resBox = document.getElementById('psychometrics-result-display');
+          if (resBox) {
+            resBox.innerHTML = `
+              <div class="card space-y-2 border-teal-500">
+                <h4 class="card-title text-amber-300">Dictamen Psicométrico</h4>
+                <div class="space-y-1 text-xs">
+                  <p>• <strong>PHQ-9 (Depresión):</strong> ${phqTot}/27 (${phqTot >= 10 ? 'Punto de corte clínico' : 'Leve/Mínima'})</p>
+                  <p>• <strong>GAD-7 (Ansiedad):</strong> ${gadTot}/21 (${gadTot >= 10 ? 'Moderada/Severa' : 'Controlada'})</p>
+                  <p>• <strong>Bienestar Espiritual:</strong> ${espTot}/20 (${espTot >= 12 ? 'Estable en Gracia' : 'Alerta de culpa'})</p>
+                </div>
+                ${item9Val > 0 ? '<div class="p-2 bg-rose-950 border border-rose-600 rounded text-rose-200 font-bold text-xs">⚠️ ALERTA VITAL: Ítem 9 de suicidio positivo. Activar Plan Stanley-Brown.</div>' : ''}
+              </div>
+            `;
+          }
+          if (activeCase) {
+            activeCase.clinicalAssessments = [{ phq9Total: phqTot, gad7Total: gadTot, spiritualTotal: espTot }];
+            await PBAIDB.setItem('cases', activeCase);
+          }
+        });
+
+        // Alta Médica por Evidencia
+        document.getElementById('btn-eval-discharge-btn')?.addEventListener('click', async () => {
+          const fam = Number(document.getElementById('dc-fam-input')?.value) || 88;
+          const occ = Number(document.getElementById('dc-occ-input')?.value) || 90;
+          const esp = Number(document.getElementById('dc-esp-input')?.value) || 92;
+          const adh = Number(document.getElementById('dc-adh-input')?.value) || 95;
+          const lastPhq = activeCase?.clinicalAssessments?.[0]?.phq9Total ?? 4;
+          const lastGad = activeCase?.clinicalAssessments?.[0]?.gad7Total ?? 3;
+
+          const ok = fam >= 80 && occ >= 80 && esp >= 80 && adh >= 85 && lastPhq < 5 && lastGad < 5;
+          const box = document.getElementById('discharge-status-box');
+          if (box) {
+            box.innerHTML = `
+              <div class="card ${ok ? 'border-emerald-500 bg-emerald-950/40' : 'border-rose-500 bg-rose-950/40'} mt-3 space-y-2">
+                <h4 class="card-title text-slate-100">${ok ? '✓ ALTA CLÍNICA APROBADA POR EVIDENCIA' : '✕ ALTA BLOQUEADA POR MOTOR'}</h4>
+                <p class="text-xs text-slate-300 font-serif">${ok ? 'El paciente reúne remisión sintomática completa y consolidación de la justificación por la fe.' : 'Requiere consolidar remisión de síntomas antes de clausurar el caso.'}</p>
+                ${ok ? '<button class="btn btn-sm btn-gold" onclick="window.print()">🖨️ Imprimir Certificado de Alta</button>' : ''}
+              </div>
+            `;
+          }
+          if (ok && activeCase) {
+            activeCase.currentStage = '8_AltaEvidencia';
+            await PBAIDB.setItem('cases', activeCase);
+            renderPipelineSteps();
+          }
+        });
+
+        // 10. SERMONES: LECTURA EN VIVO & GUARDADO
+        function updateSermonPreview() {
+          const area = document.getElementById('sermon-preview');
+          const title = document.getElementById('sermon-title')?.value || 'Título';
+          const text = document.getElementById('sermon-text')?.value || '';
+          const body = document.getElementById('sermon-body')?.value || '';
+          const mode = document.getElementById('sermon-view-mode')?.value || 'pulpito';
+          if (!area) return;
+          area.className = 'pulpit-reading-area reading-mode-' + mode;
+          area.innerHTML = `<h2 style="color:#fbbf24; margin-bottom:0.5rem; font-size:1.3em;">${esc(title)}</h2>` +
+                           `<div style="color:#34d399; font-weight:bold; margin-bottom:1rem;">${esc(text)}</div>` +
+                           `<div style="white-space:pre-wrap;">${esc(body)}</div>`;
+        }
+
+        ['sermon-title', 'sermon-text', 'sermon-body', 'sermon-view-mode'].forEach(id => {
+          document.getElementById(id)?.addEventListener('input', updateSermonPreview);
+        });
+        updateSermonPreview();
+        setupTimer();
+
+        async function refreshSermonList() {
+          const sermons = await PBAIDB.getAll('sermons');
+          const list = document.getElementById('saved-sermon-list');
+          if (!list) return;
+          list.innerHTML = sermons.map(s => `
+            <div class="card mb-2 flex justify-between items-center text-xs">
+              <div>
+                <strong class="text-amber-300">${esc(s.title)}</strong>
+                <p class="text-slate-400 font-serif">${esc(s.text || '')}</p>
+              </div>
+              <div class="flex gap-1 shrink-0">
+                <button class="btn btn-sm btn-gold" onclick="loadSermonToEditor('${esc(s.id)}')">Cargar</button>
+                <button class="btn btn-sm btn-danger" onclick="deleteSermonGlobal('${esc(s.id)}')">✕</button>
+              </div>
+            </div>
+          `).join('') || '<p class="text-xs text-slate-500 font-serif">Sin sermones guardados.</p>';
+        }
+
+        window.loadSermonToEditor = async function (id) {
+          const sermons = await PBAIDB.getAll('sermons');
+          const s = sermons.find(x => x.id === id);
+          if (s) {
+            document.getElementById('sermon-title').value = s.title;
+            document.getElementById('sermon-text').value = s.text;
+            document.getElementById('sermon-body').value = s.body;
+            updateSermonPreview();
+          }
+        };
+
+        window.deleteSermonGlobal = async function (id) {
+          await PBAIDB.deleteItem('sermons', id);
+          refreshSermonList();
+          refreshKPIs();
+        };
+
+        document.getElementById('btn-save-sermon')?.addEventListener('click', async () => {
+          const title = document.getElementById('sermon-title')?.value.trim();
+          if (!title) return alert('Escribe un título.');
+          await PBAIDB.setItem('sermons', {
+            id: 'sermon-' + Date.now(),
+            title,
+            text: document.getElementById('sermon-text')?.value || '',
+            body: document.getElementById('sermon-body')?.value || '',
+            mins: Number(document.getElementById('sermon-mins')?.value) || 30
+          });
+          alert('¡Sermón guardado en biblioteca!');
+          refreshSermonList();
+          refreshKPIs();
+        });
+        refreshSermonList();
+
+        // 11. PLANIFICADOR Y METAS
+        const pDate = document.getElementById('plan-date');
+        if (pDate) pDate.value = new Date().toISOString().slice(0, 10);
+
+        async function refreshPlanEvents() {
+          const events = await PBAIDB.getAll('events');
+          const list = document.getElementById('plan-events-list');
+          if (!list) return;
+          list.innerHTML = events.sort((a,b) => a.date.localeCompare(b.date)).map(ev => `
+            <div class="p-2.5 bg-slate-900 rounded-xl mb-2 flex justify-between items-center text-xs">
+              <div>
+                <strong>${esc(ev.title)}</strong>
+                <span class="text-teal-400 block">${esc(ev.date)} • ${esc(ev.type)}</span>
+              </div>
+              <button class="btn btn-sm btn-danger" onclick="deleteEventGlobal('${esc(ev.id)}')">✕</button>
+            </div>
+          `).join('') || '<p class="text-xs text-slate-500 font-serif">Sin eventos programados.</p>';
+        }
+
+        window.deleteEventGlobal = async function(id) {
+          await PBAIDB.deleteItem('events', id);
+          refreshPlanEvents();
+          refreshKPIs();
+        };
+
+        document.getElementById('btn-add-activity')?.addEventListener('click', async () => {
+          const t = document.getElementById('plan-act')?.value.trim();
+          const d = document.getElementById('plan-date')?.value;
+          if (!t || !d) return alert('Completa fecha y actividad.');
+          await PBAIDB.setItem('events', {
+            id: 'ev-' + Date.now(),
+            title: t,
+            date: d,
+            type: document.getElementById('plan-type')?.value || 'Predicación'
+          });
+          document.getElementById('plan-act').value = '';
+          refreshPlanEvents();
+          refreshKPIs();
+        });
+        refreshPlanEvents();
+
+        // Metas
+        async function refreshGoals() {
+          const goals = await PBAIDB.getAll('goals');
+          const list = document.getElementById('plan-goals-list');
+          if (!list) return;
+          list.innerHTML = goals.map(g => `
+            <div class="p-2 bg-slate-900 rounded-xl mb-1.5 flex justify-between items-center text-xs">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" ${g.done ? 'checked' : ''} onchange="toggleGoalGlobal('${esc(g.id)}', this.checked)" class="rounded accent-emerald-500" />
+                <span class="${g.done ? 'line-through text-slate-500' : 'text-slate-200'}">${esc(g.text)}</span>
+              </label>
+              <button class="btn btn-sm btn-danger" onclick="deleteGoalGlobal('${esc(g.id)}')">✕</button>
+            </div>
+          `).join('') || '<p class="text-xs text-slate-500 font-serif">Sin metas registradas.</p>';
+        }
+
+        window.toggleGoalGlobal = async function(id, done) {
+          const goals = await PBAIDB.getAll('goals');
+          const g = goals.find(x => x.id === id);
+          if (g) { g.done = done; await PBAIDB.setItem('goals', g); refreshGoals(); refreshKPIs(); }
+        };
+
+        window.deleteGoalGlobal = async function(id) {
+          await PBAIDB.deleteItem('goals', id);
+          refreshGoals();
+          refreshKPIs();
+        };
+
+        document.getElementById('btn-add-goal')?.addEventListener('click', async () => {
+          const txt = document.getElementById('plan-goal-text')?.value.trim();
+          if (!txt) return;
+          await PBAIDB.setItem('goals', { id: 'g-' + Date.now(), text: txt, done: false });
+          document.getElementById('plan-goal-text').value = '';
+          refreshGoals();
+          refreshKPIs();
+        });
+        refreshGoals();
+
+        // 12. ESTUDIO: FICHAS EXEGÉTICAS, ATLAS, CRONOLOGÍA, PERSONAJES
+        async function refreshResearch() {
+          const items = await PBAIDB.getAll('research');
+          const list = document.getElementById('research-list');
+          if (!list) return;
+          list.innerHTML = items.map(r => `
+            <div class="card mb-3 text-xs">
+              <div class="flex justify-between items-start mb-1">
+                <h4 class="card-title text-emerald-300">${esc(r.topic)}</h4>
+                <button class="btn btn-sm btn-danger" onclick="deleteResearchGlobal('${esc(r.id)}')">✕</button>
+              </div>
+              <p class="text-slate-300 font-serif whitespace-pre-wrap">${esc(r.notes)}</p>
+            </div>
+          `).join('') || '<p class="text-xs text-slate-500 font-serif">Sin fichas de investigación aún.</p>';
+        }
+
+        window.deleteResearchGlobal = async function(id) {
+          await PBAIDB.deleteItem('research', id);
+          refreshResearch();
+          refreshKPIs();
+        };
+
+        document.getElementById('btn-save-research')?.addEventListener('click', async () => {
+          const topic = document.getElementById('res-topic')?.value.trim();
+          const notes = document.getElementById('res-notes')?.value.trim();
+          if (!topic || !notes) return alert('Completa tema y notas.');
+          await PBAIDB.setItem('research', { id: 'res-' + Date.now(), topic, notes });
+          document.getElementById('res-topic').value = '';
+          document.getElementById('res-notes').value = '';
+          refreshResearch();
+          refreshKPIs();
+        });
+        refreshResearch();
+
+        // Mapa Conceptual
+        document.getElementById('btn-generate-map')?.addEventListener('click', () => {
+          const val = document.getElementById('map-concepts')?.value || '';
+          const terms = val.split(',').map(s => s.trim()).filter(Boolean);
+          const out = document.getElementById('map-output');
+          if (out) {
+            out.innerHTML = terms.map((t, idx) => `
+              <div class="p-2.5 bg-slate-900 border border-teal-500/40 rounded-xl text-xs text-teal-300 font-bold flex items-center gap-1.5">
+                <span class="step-num" style="width:1.25rem;height:1.25rem;font-size:0.65rem;">${idx + 1}</span>
+                <span>${esc(t)}</span>
+              </div>
+            `).join('');
+          }
+        });
+
+        // Atlas
+        function renderAtlas() {
+          const sel = document.getElementById('atlas-route-select');
+          const out = document.getElementById('atlas-route-output');
+          if (!sel || !out) return;
+          const stations = ROUTES_DATA[sel.value] || [];
+          out.innerHTML = stations.map((st, i) => `
+            <div class="p-2.5 bg-slate-900 rounded-xl mb-1.5 flex items-center gap-2.5 text-xs">
+              <span class="step-num" style="width:1.5rem;height:1.5rem;font-size:0.75rem;">${i + 1}</span>
+              <span class="text-slate-200 font-serif">${esc(st)}</span>
+            </div>
+          `).join('');
+        }
+        document.getElementById('atlas-route-select')?.addEventListener('change', renderAtlas);
+        renderAtlas();
+
+        // Cronología
+        function renderTimeline() {
+          const sel = document.getElementById('timeline-filter');
+          const cont = document.getElementById('timeline-container');
+          if (!sel || !cont) return;
+          const f = sel.value;
+          const filtered = TIMELINE_DATA.filter(t => f === 'all' || t.period === f);
+          cont.innerHTML = filtered.map(t => `
+            <div class="p-3 bg-slate-900 border-l-4 border-l-teal-500 rounded-xl mb-2 text-xs">
+              <div class="flex justify-between items-center mb-0.5">
+                <strong class="text-slate-100">${esc(t.era)}</strong>
+                <span class="text-[10px] text-amber-300 font-mono">${esc(t.text)}</span>
+              </div>
+              <p class="text-slate-400 font-serif">${esc(t.desc)}</p>
+            </div>
+          `).join('');
+        }
+        document.getElementById('timeline-filter')?.addEventListener('change', renderTimeline);
+        renderTimeline();
+
+        // Personajes
+        const peopleCont = document.getElementById('people-container');
+        if (peopleCont) {
+          peopleCont.innerHTML = PEOPLE_DATA.map(p => `
+            <div class="card text-xs space-y-1.5">
+              <div class="flex justify-between items-center border-b border-slate-800 pb-1">
+                <h4 class="card-title text-amber-300">${esc(p.name)}</h4>
+                <span class="text-[10px] text-slate-500 font-mono">${esc(p.ref)}</span>
+              </div>
+              <p><strong class="text-emerald-400">Fortalezas:</strong> ${esc(p.strengths)}</p>
+              <p><strong class="text-rose-400">Tensiones:</strong> ${esc(p.tensions)}</p>
+              <p><strong class="text-teal-300">Aplicación:</strong> ${esc(p.app)}</p>
+            </div>
+          `).join('');
+        }
+
+        // Matriz de Integración
+        const matCont = document.getElementById('matrix-container');
+        if (matCont) {
+          matCont.innerHTML = INTEGRATION_FRAMEWORKS.map(m => `
+            <div class="card mb-3 text-xs space-y-1.5">
+              <div class="flex justify-between items-center border-b border-slate-800 pb-1">
+                <h4 class="card-title text-slate-100">${esc(m.therapy)}</h4>
+                <span class="text-amber-300 font-serif italic">${esc(m.passage)}</span>
+              </div>
+              <p><strong class="text-teal-300">Concepto Clínico:</strong> ${esc(m.concept)}</p>
+              <p><strong class="text-emerald-300">Equivalencia Bíblica:</strong> ${esc(m.biblical)}</p>
+              <p><strong class="text-slate-200">Aplicación:</strong> ${esc(m.app)}</p>
+            </div>
+          `).join('');
+        }
+
+        // 13. ACADEMIA: 10 CURSOS & SEGUIMIENTO
+        const storedCourses = await PBAIDB.getAll('courses');
+        const courseMap = {};
+        storedCourses.forEach(c => courseMap[c.key] = c.completedModules || []);
+
+        function renderAcademyCourses() {
+          const cont = document.getElementById('academy-courses-grid');
+          if (!cont) return;
+          cont.innerHTML = COURSES_DATA.map((c, cIdx) => {
+            const title = c[0];
+            const modules = c.slice(1);
+            const done = courseMap[title] || [];
+            const pct = Math.round((done.length / modules.length) * 100);
+            return `
+              <div class="card text-xs space-y-2">
+                <div class="flex justify-between items-center">
+                  <strong class="text-amber-300">${esc(title)}</strong>
+                  <span class="badge-tag">${pct}%</span>
+                </div>
+                <div style="height:5px; background:#1e293b; border-radius:99px; overflow:hidden;">
+                  <div style="height:100%; width:${pct}%; background:#10b981;"></div>
+                </div>
+                <div class="space-y-1">
+                  ${modules.map((m, mIdx) => `
+                    <label class="flex items-center gap-1.5 cursor-pointer">
+                      <input type="checkbox" ${done.includes(mIdx) ? 'checked' : ''} onchange="toggleModuleGlobal('${esc(title)}', ${mIdx}, this.checked)" class="rounded accent-emerald-500" />
+                      <span class="${done.includes(mIdx) ? 'text-emerald-400' : 'text-slate-400'}">${esc(m)}</span>
+                    </label>
+                  `).join('')}
+                </div>
+              </div>
+            `;
+          }).join('');
+        }
+
+        window.toggleModuleGlobal = async function(title, mIdx, checked) {
+          courseMap[title] = courseMap[title] || [];
+          if (checked) {
+            if (!courseMap[title].includes(mIdx)) courseMap[title].push(mIdx);
+          } else {
+            courseMap[title] = courseMap[title].filter(x => x !== mIdx);
+          }
+          await PBAIDB.setItem('courses', { key: title, completedModules: courseMap[title] });
+          renderAcademyCourses();
+        };
+        renderAcademyCourses();
+
+        // Escuela de Líderes
+        const leadCont = document.getElementById('leaders-track-container');
+        if (leadCont) {
+          const tracks = [
+            ['Predicadores Expositivos', 'Lectura contextual', 'Idea exegética', 'Estructura homilética', 'Aplicación en gracia'],
+            ['Maestros Bíblicos', 'Objetivos claros', 'Pedagogía participativa', 'Preguntas socráticas', 'Evaluación formativa'],
+            ['Discipuladores Personales', 'Escucha activa', 'Hábitos de gracia', 'Mentoría de vida', 'Multiplicación'],
+            ['Consejeros Pastorales', 'Límites éticos', 'Detección de crisis', 'Integración clínica', 'Derivación médica']
+          ];
+          leadCont.innerHTML = tracks.map(t => `
+            <div class="card text-xs space-y-1.5">
+              <h4 class="card-title text-teal-300">${esc(t[0])}</h4>
+              ${t.slice(1).map(item => `
+                <div class="p-1.5 bg-slate-900 rounded flex items-center gap-2">
+                  <span class="text-emerald-400 font-bold">✓</span>
+                  <span class="text-slate-300 font-serif">${esc(item)}</span>
+                </div>
+              `).join('')}
+            </div>
+          `).join('');
+        }
+
+        // Bienestar
+        document.getElementById('btn-save-wellbeing')?.addEventListener('click', async () => {
+          await PBAIDB.setItem('wellbeing', {
+            key: 'latest',
+            load: document.getElementById('well-load')?.value,
+            support: document.getElementById('well-support')?.value,
+            date: new Date().toISOString()
+          });
+          alert('¡Chequeo de bienestar ministerial guardado!');
+        });
+
+        // Recursos Visuales (Exportación SVG pura)
+        let currentVisual = null;
+        document.getElementById('btn-create-visual')?.addEventListener('click', async () => {
+          const t = document.getElementById('vis-title')?.value.trim();
+          const items = document.getElementById('vis-items')?.value.split(';').map(s => s.trim()).filter(Boolean);
+          if (!t || !items.length) return alert('Completa título y conceptos.');
+          currentVisual = { id: 'vis-' + Date.now(), title: t, items };
+          await PBAIDB.setItem('visuals', currentVisual);
+
+          const out = document.getElementById('visual-preview-output');
+          if (out) {
+            out.innerHTML = `
+              <div class="card border-emerald-500 mt-2 space-y-2">
+                <h4 class="card-title text-amber-300">${esc(t)}</h4>
+                ${items.map((it, i) => `
+                  <div class="p-2 bg-slate-900 rounded border border-teal-500/30 text-xs text-slate-100 font-bold">${i + 1}. ${esc(it)}</div>
+                `).join('')}
+              </div>
+            `;
+          }
+          refreshKPIs();
+        });
+
+        document.getElementById('btn-export-svg')?.addEventListener('click', () => {
+          if (!currentVisual) return alert('Crea primero un esquema.');
+          const rects = currentVisual.items.map((it, i) => `
+            <rect x="40" y="${60 + i * 65}" width="720" height="42" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="2"/>
+            <text x="400" y="${86 + i * 65}" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="15">${esc((i + 1) + '. ' + it)}</text>
+          `).join('');
+
+          const svg = `
+            <svg xmlns="http://www.w3.org/2000/svg" width="800" height="${Math.max(140, 90 + currentVisual.items.length * 65)}">
+              <rect width="100%" height="100%" fill="#020617"/>
+              <text x="400" y="36" text-anchor="middle" fill="#fbbf24" font-family="Arial, sans-serif" font-weight="bold" font-size="20">${esc(currentVisual.title)}</text>
+              ${rects}
+            </svg>
+          `;
+          const blob = new Blob([svg], { type: 'image/svg+xml' });
+          const u = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = u;
+          a.download = `esquema_${currentVisual.title.toLowerCase().replace(/\\s+/g, '_')}.svg`;
+          a.click();
+          setTimeout(() => URL.revokeObjectURL(u), 1000);
+        });
+
+        // 14. RESPALDOS JSON
+        document.getElementById('btn-export-backup')?.addEventListener('click', async () => {
+          const data = {
+            app: 'PastoralMente Bíblica AI',
+            exportedAt: new Date().toISOString(),
+            cases: await PBAIDB.getAll('cases'),
+            sermons: await PBAIDB.getAll('sermons'),
+            research: await PBAIDB.getAll('research'),
+            events: await PBAIDB.getAll('events'),
+            goals: await PBAIDB.getAll('goals'),
+            courses: await PBAIDB.getAll('courses'),
+            visuals: await PBAIDB.getAll('visuals')
+          };
+          const b = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+          const u = URL.createObjectURL(b);
+          const a = document.createElement('a');
+          a.href = u;
+          a.download = `pastoralmente_respaldo_${new Date().toISOString().slice(0, 10)}.json`;
+          a.click();
+          setTimeout(() => URL.revokeObjectURL(u), 1000);
+        });
+
+        const fileIn = document.getElementById('input-import-file');
+        document.getElementById('btn-import-backup')?.addEventListener('click', () => fileIn?.click());
+        fileIn?.addEventListener('change', async (e) => {
+          const file = e.target.files && e.target.files[0];
+          if (!file) return;
+          try {
+            const json = JSON.parse(await file.text());
+            if (confirm('¿Restaurar los registros desde este archivo de respaldo?')) {
+              if (Array.isArray(json.cases)) for (const c of json.cases) await PBAIDB.setItem('cases', c);
+              if (Array.isArray(json.sermons)) for (const s of json.sermons) await PBAIDB.setItem('sermons', s);
+              if (Array.isArray(json.research)) for (const r of json.research) await PBAIDB.setItem('research', r);
+              if (Array.isArray(json.events)) for (const ev of json.events) await PBAIDB.setItem('events', ev);
+              if (Array.isArray(json.goals)) for (const g of json.goals) await PBAIDB.setItem('goals', g);
+              alert('¡Respaldo restaurado con éxito!');
+              window.location.reload();
+            }
+          } catch (err) { alert('Archivo JSON inválido.'); }
+          fileIn.value = '';
+        });
+
+        // 15. ACCESIBILIDAD, TEMA & AUDIO
+        document.getElementById('btn-theme-toggle')?.addEventListener('click', () => {
+          document.body.classList.toggle('light-theme');
+          renderDashboardCharts();
+        });
+
+        document.getElementById('btn-role-switcher')?.addEventListener('click', () => {
+          const roles = ['Psicólogo', 'Supervisor', 'Administrador', 'Consejero', 'Paciente'];
+          let cur = localStorage.getItem('pbai_role') || 'Psicólogo';
+          cur = roles[(roles.indexOf(cur) + 1) % roles.length];
+          localStorage.setItem('pbai_role', cur);
+          document.getElementById('btn-role-switcher').textContent = 'Rol: ' + cur;
+        });
+
+        let fontScale = 100;
+        document.getElementById('btn-font-up')?.addEventListener('click', () => {
+          fontScale = Math.min(140, fontScale + 10);
+          document.documentElement.style.fontSize = fontScale + '%';
+        });
+        document.getElementById('btn-font-down')?.addEventListener('click', () => {
+          fontScale = Math.max(80, fontScale - 10);
+          document.documentElement.style.fontSize = fontScale + '%';
+        });
+
+        document.getElementById('btn-stop-voice')?.addEventListener('click', () => Narrator.stop());
+
+        // PWA Offline detection
+        window.addEventListener('online', () => document.getElementById('offline-indicator').style.display = 'none');
+        window.addEventListener('offline', () => document.getElementById('offline-indicator').style.display = 'flex');
+      }
+
+      document.addEventListener('DOMContentLoaded', initApp);
+    })();
+  </script>
+</body>
+</html>
